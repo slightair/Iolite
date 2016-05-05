@@ -1,9 +1,15 @@
 import Foundation
 
-class Cell {
+final class Cell: PathNode {
+    typealias Dirction = Direction
+
     enum Direction: Int {
         case Left, Top, Right, Bottom
         static let values: [Direction] = [.Left, .Top, .Right, .Bottom]
+    }
+
+    static func directions() -> [Direction] {
+        return Direction.values
     }
 
     let index: Int
@@ -23,6 +29,12 @@ class Cell {
 
     init(index: Int) {
         self.index = index
+    }
+
+    func distance(another: Cell) -> Int {
+        let dx = abs(another.x - x)
+        let dy = abs(another.y - y)
+        return max(dx, dy)
     }
 
     subscript(direction: Direction) -> Cell? {
