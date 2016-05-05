@@ -35,7 +35,7 @@ class GameScene: SKScene {
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        creatureNode.cellIndex = 311
+        creatureNode.moveTo(311, animated: false)
     }
 
     override func update(currentTime: CFTimeInterval) {
@@ -55,13 +55,13 @@ class GameScene: SKScene {
         }
 
         let location = touch.locationInNode(self)
-        guard let selectedNode = (nodesAtPoint(location).filter { $0.parent == fieldNode }).first,
+        guard let selectedNode = (nodesAtPoint(location).filter { $0.parent == fieldNode && $0 != creatureNode }).first,
             indexString = selectedNode.name,
             selectedIndex = Int(indexString)
             else {
             return
         }
 
-        creatureNode.cellIndex = selectedIndex
+        creatureNode.moveTo(selectedIndex)
     }
 }
