@@ -17,6 +17,7 @@
 		57ED7B2D1CDB1FF2001E5A88 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B2B1CDB1FF2001E5A88 /* Field.swift */; };
 		57ED7B2F1CDB2158001E5A88 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B2E1CDB2158001E5A88 /* Cell.swift */; };
 		57ED7B301CDB2158001E5A88 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B2E1CDB2158001E5A88 /* Cell.swift */; };
+		57ED7B321CDB2EC1001E5A88 /* FieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B311CDB2EC1001E5A88 /* FieldTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		57ED7B1F1CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57ED7B2B1CDB1FF2001E5A88 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		57ED7B2E1CDB2158001E5A88 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		57ED7B311CDB2EC1001E5A88 /* FieldTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				57ED7B1F1CDAFA30001E5A88 /* Info.plist */,
+				57ED7B311CDB2EC1001E5A88 /* FieldTest.swift */,
 			);
 			path = ConneConneTests;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57ED7B321CDB2EC1001E5A88 /* FieldTest.swift in Sources */,
 				57ED7B301CDB2158001E5A88 /* Cell.swift in Sources */,
 				57ED7B2D1CDB1FF2001E5A88 /* Field.swift in Sources */,
 			);
