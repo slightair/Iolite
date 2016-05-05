@@ -4,6 +4,7 @@ class GameScene: SKScene {
     static let BlockSize = 16
     let fieldNode = SKNode()
     var field = Field()
+    var creatureNode: CreatureNode!
 
     override func didMoveToView(view: SKView) {
         fieldNode.position = CGPoint(x: 32, y: 460)
@@ -25,10 +26,21 @@ class GameScene: SKScene {
             fieldNode.addChild(labelNode)
         }
 
+        creatureNode = CreatureNode()
+        fieldNode.addChild(creatureNode)
+
         addChild(fieldNode)
     }
 
     override func update(currentTime: CFTimeInterval) {
+        creatureNode.cellIndex = 311
+    }
 
+    func positionOfIndex(index: Int) -> CGPoint {
+        guard let cell = field.cells[index] else {
+            fatalError("invalid index")
+        }
+        return CGPoint(x: cell.x * GameScene.BlockSize + GameScene.BlockSize / 2,
+                       y: -cell.y * GameScene.BlockSize - GameScene.BlockSize / 2)
     }
 }
