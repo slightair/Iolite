@@ -2,6 +2,7 @@ import SpriteKit
 
 class CreatureNode: SKSpriteNode {
     var cellIndex: Int = 0
+    var pathFinder: PathFinder<Cell>? = nil
 
     convenience init() {
         self.init(imageNamed: "creature")
@@ -10,9 +11,14 @@ class CreatureNode: SKSpriteNode {
     }
 
     func moveTo(cellIndex: Int, animated: Bool = true) {
+        let prevIndex = self.cellIndex
         self.cellIndex = cellIndex
 
         if let gameScene = scene as? GameScene {
+            pathFinder = gameScene.pathFinder(prevIndex, destination: cellIndex)
+            pathFinder!.calculate()
+            print(pathFinder)
+
             let newPosition = gameScene.positionOfIndex(cellIndex)
 
             if animated {

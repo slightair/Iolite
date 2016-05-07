@@ -49,6 +49,13 @@ class GameScene: SKScene {
                        y: -cell.y * GameScene.BlockSize - GameScene.BlockSize / 2)
     }
 
+    func pathFinder(source: Int, destination: Int) -> PathFinder<Cell> {
+        let sourceCell = field.cells[source]!
+        let destinationCell = field.cells[destination]!
+
+        return PathFinder(source: sourceCell, destination: destinationCell)
+    }
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         guard let touch = touches.first else {
             return

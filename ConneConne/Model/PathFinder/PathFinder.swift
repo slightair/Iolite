@@ -16,7 +16,7 @@ class PathFinder<T: PathNode> {
         return calculated && result != nil
     }
     var currentPointIndex = 0
-    var maxCost = 40
+    var maxCost = 50
 
     init(source: T, destination: T) {
         self.source = source
@@ -106,5 +106,16 @@ class PathFinder<T: PathNode> {
 
         let point = result![currentPointIndex]
         return .CheckPoint(point)
+    }
+}
+
+extension PathFinder: CustomStringConvertible {
+    var description: String {
+        if let result = result {
+            let path = result.map { String($0.index) }
+            return "Path: \(path.joinWithSeparator(" -> ")), Step: \(path.count)"
+        } else {
+            return "(not calculated)"
+        }
     }
 }
