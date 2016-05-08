@@ -113,7 +113,7 @@ extension PathFinder: CustomStringConvertible {
     var description: String {
         if let result = result {
             let path = result.map { String($0.index) }
-            return "Path: \(path.joinWithSeparator(" -> ")), Step: \(path.count)"
+            return "Path: \(path.joinWithSeparator(" -> ")), Step: \(path.count - 1)"
         } else {
             return "(not calculated)"
         }

@@ -2,6 +2,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     static let BlockSize = 16
+
     let fieldNode = SKNode()
     let fieldDebugNode = SKNode()
     var field = Field()
@@ -9,7 +10,7 @@ class GameScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         fieldNode.position = CGPoint(x: 32, y: 460)
-        fieldDebugNode.position = CGPoint(x: 32, y: 460)
+        fieldDebugNode.position = fieldNode.position
 
         for (index, cell) in field.cells {
             let (x, y) = (cell.x, cell.y)
