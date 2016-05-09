@@ -1,8 +1,13 @@
 import SpriteKit
 
 class CreatureNode: SKSpriteNode {
-    var cellIndex: Int = 0
-    var pathFinder: PathFinder<Cell>! = nil
+    var currentCellIndex: Int = 0
+    var pathFinder: PathFinder<Cell>? = nil
+    var isMoving = false
+
+    var moveDuration: NSTimeInterval {
+        return 0.3
+    }
 
     convenience init() {
         self.init(imageNamed: "creature")
@@ -10,22 +15,50 @@ class CreatureNode: SKSpriteNode {
         size = CGSize(width: 32, height: 32)
     }
 
-    func moveTo(cellIndex: Int, animated: Bool = true) {
-        let prevIndex = self.cellIndex
-        self.cellIndex = cellIndex
+    func targetTo(cellIndex: Int) {
+        guard let gameScene = scene as? GameScene else {
+            return
+        }
 
-        if let gameScene = scene as? GameScene {
-            let newPosition = gameScene.positionOfIndex(cellIndex)
+        if pathFinder != nil {
+            pathFinder = nil
+            removeAllActions()
+            isMoving = false
+        }
 
-            if animated {
-                pathFinder = gameScene.pathFinder(prevIndex, destination: cellIndex)
-                pathFinder.calculate()
-                debugPrint(pathFinder)
+        pathFinder = gameScene.pathFinder(currentCellIndex, destination: cellIndex)
+        pathFinder!.calculate()
+    }
 
-                runAction(SKAction.moveTo(newPosition, duration: 0.3))
-            } else {
-                position = newPosition
+    func moveTo(cellIndex: Int) {
+        guard let gameScene = scene as? GameScene else {
+            return
+        }
+
+        currentCellIndex = cellIndex
+        pathFinder = nil
+
+        position = gameScene.positionOfIndex(cellIndex)
+    }
+
+    func tick() {
+        if isMoving {
+            return
+        }
+
+        guard let gameScene = scene as? GameScene, pathFinder = pathFinder else {
+            return
+        }
+
+        switch pathFinder.nextCheckPoint() {
+        case .CheckPoint(let cell):
+            isMoving = true
+            runAction(SKAction.moveTo(gameScene.positionOfIndex(cell.index), duration: moveDuration)) {
+                self.currentCellIndex = cell.index
+                self.isMoving = false
             }
+        case .End:
+            self.pathFinder = nil
         }
     }
 }

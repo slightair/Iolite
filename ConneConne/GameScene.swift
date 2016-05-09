@@ -36,10 +36,11 @@ class GameScene: SKScene {
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        creatureNode.moveTo(311, animated: false)
+        creatureNode.moveTo(311)
     }
 
     override func update(currentTime: CFTimeInterval) {
+        creatureNode.tick()
     }
 
     func positionOfIndex(index: Int) -> CGPoint {
@@ -70,6 +71,6 @@ class GameScene: SKScene {
             return
         }
 
-        creatureNode.moveTo(selectedIndex)
+        creatureNode.targetTo(selectedIndex)
     }
 }
