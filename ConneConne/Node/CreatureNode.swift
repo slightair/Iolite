@@ -5,6 +5,18 @@ class CreatureNode: SKSpriteNode {
     var pathFinder: PathFinder<Cell>? = nil
     var isMoving = false
 
+    var movePathNode: SKShapeNode? {
+        willSet {
+            movePathNode?.removeFromParent()
+        }
+
+        didSet {
+            if let node = movePathNode {
+                self.parent?.addChild(node)
+            }
+        }
+    }
+
     var moveDuration: NSTimeInterval {
         return 0.3
     }
@@ -24,10 +36,13 @@ class CreatureNode: SKSpriteNode {
             pathFinder = nil
             removeAllActions()
             isMoving = false
+            moveTo(currentCellIndex)
         }
 
         pathFinder = gameScene.pathFinder(currentCellIndex, destination: cellIndex)
-        pathFinder!.calculate()
+        let result = pathFinder!.calculate()!
+        var points = result.map { gameScene.positionOfIndex($0.index) }
+        self.movePathNode = SKShapeNode(points: &points, count: points.count)
     }
 
     func moveTo(cellIndex: Int) {
