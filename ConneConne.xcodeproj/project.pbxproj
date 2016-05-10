@@ -26,6 +26,8 @@
 		57ED7B3F1CDB5040001E5A88 /* PathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B3E1CDB5040001E5A88 /* PathFinderTests.swift */; };
 		57ED7B411CDB50E6001E5A88 /* PathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B401CDB50E6001E5A88 /* PathNode.swift */; };
 		57ED7B421CDB50E6001E5A88 /* PathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B401CDB50E6001E5A88 /* PathNode.swift */; };
+		57EF20951CE2286C009A3EBD /* CreatureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20941CE2286C009A3EBD /* CreatureComponent.swift */; };
+		57EF20971CE22A14009A3EBD /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20961CE22A14009A3EBD /* Creature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		57ED7B391CDB501D001E5A88 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		57ED7B3E1CDB5040001E5A88 /* PathFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinderTests.swift; sourceTree = "<group>"; };
 		57ED7B401CDB50E6001E5A88 /* PathNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathNode.swift; sourceTree = "<group>"; };
+		57EF20941CE2286C009A3EBD /* CreatureComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureComponent.swift; sourceTree = "<group>"; };
+		57EF20961CE22A14009A3EBD /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		57ED7B031CDAFA30001E5A88 /* ConneConne */ = {
 			isa = PBXGroup;
 			children = (
+				57EF20931CE226A4009A3EBD /* Components */,
+				57EF20921CE22689009A3EBD /* Entities */,
 				57ED7B331CDB4A1A001E5A88 /* Node */,
 				57ED7B2A1CDB1E7C001E5A88 /* Model */,
 				57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */,
@@ -147,6 +153,22 @@
 				57ED7B401CDB50E6001E5A88 /* PathNode.swift */,
 			);
 			path = PathFinder;
+			sourceTree = "<group>";
+		};
+		57EF20921CE22689009A3EBD /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				57EF20961CE22A14009A3EBD /* Creature.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		57EF20931CE226A4009A3EBD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				57EF20941CE2286C009A3EBD /* CreatureComponent.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57EF20951CE2286C009A3EBD /* CreatureComponent.swift in Sources */,
 				57ED7B411CDB50E6001E5A88 /* PathNode.swift in Sources */,
 				57ED7B3A1CDB501D001E5A88 /* PathFinder.swift in Sources */,
 				57ED7B351CDB4A2B001E5A88 /* CreatureNode.swift in Sources */,
@@ -258,6 +281,7 @@
 				57ED7B3C1CDB501D001E5A88 /* Path.swift in Sources */,
 				57ED7B2F1CDB2158001E5A88 /* Cell.swift in Sources */,
 				57ED7B2C1CDB1FF2001E5A88 /* Field.swift in Sources */,
+				57EF20971CE22A14009A3EBD /* Creature.swift in Sources */,
 				57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
