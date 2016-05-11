@@ -1,4 +1,5 @@
 import SpriteKit
+import GameplayKit
 
 class GameScene: SKScene {
     static let BlockSize = 16
@@ -6,7 +7,18 @@ class GameScene: SKScene {
     let fieldNode = SKNode()
     let fieldDebugNode = SKNode()
     var field = Field()
-    var creatureNode: CreatureNode!
+    var blockNodes = [SKNode]()
+    var creatures = [Creature]()
+
+    let onFieldComponentSystem = GKComponentSystem(componentClass: OnFieldComponent.self)
+    let spriteComponentSystem = GKComponentSystem(componentClass: SpriteComponent.self)
+
+    var componentSystems: [GKComponentSystem] {
+        return [
+            spriteComponentSystem,
+            onFieldComponentSystem,
+        ]
+    }
 
     override func didMoveToView(view: SKView) {
         fieldNode.position = CGPoint(x: 32, y: 460)
@@ -21,6 +33,8 @@ class GameScene: SKScene {
             blockNode.color = UIColor.darkGrayColor()
             blockNode.colorBlendFactor = 1.0
             blockNode.name = "\(index)"
+
+            blockNodes.append(blockNode)
             fieldNode.addChild(blockNode)
 
             let labelNode = SKLabelNode(text: "\(index)")
@@ -30,32 +44,34 @@ class GameScene: SKScene {
             fieldDebugNode.addChild(labelNode)
         }
 
-        creatureNode = CreatureNode()
-        fieldNode.addChild(creatureNode)
-
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        creatureNode.moveTo(311)
+        let creature = makeCreature()
+        for componentsystem in componentSystems {
+            componentsystem.addComponentWithEntity(creature)
+        }
+        creatures.append(creature)
     }
 
     override func update(currentTime: CFTimeInterval) {
-        creatureNode.tick()
-    }
-
-    func positionOfIndex(index: Int) -> CGPoint {
-        guard let cell = field.cells[index] else {
-            fatalError("invalid index")
+        for system in componentSystems {
+            system.updateWithDeltaTime(currentTime)
         }
-        return CGPoint(x: cell.x * GameScene.BlockSize + GameScene.BlockSize / 2,
-                       y: -cell.y * GameScene.BlockSize - GameScene.BlockSize / 2)
     }
 
-    func pathFinder(source: Int, destination: Int) -> PathFinder<Cell> {
-        let sourceCell = field.cells[source]!
-        let destinationCell = field.cells[destination]!
+    func makeCreature() -> Creature {
+        let creature = Creature()
 
-        return PathFinder(source: sourceCell, destination: destinationCell)
+        let spriteComponent = SpriteComponent()
+        creature.addComponent(spriteComponent)
+        fieldNode.addChild(spriteComponent.spriteNode)
+
+        let onFieldComponent = OnFieldComponent(field: field)
+        creature.addComponent(onFieldComponent)
+        onFieldComponent.moveTo(311)
+
+        return creature
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -64,13 +80,15 @@ class GameScene: SKScene {
         }
 
         let location = touch.locationInNode(self)
-        guard let selectedNode = (nodesAtPoint(location).filter { $0.parent == fieldNode && $0 != creatureNode }).first,
+        guard let selectedNode = (nodesAtPoint(location).filter { blockNodes.contains($0) }).first,
             indexString = selectedNode.name,
             selectedIndex = Int(indexString)
             else {
             return
         }
 
-        creatureNode.targetTo(selectedIndex)
+        for component in onFieldComponentSystem.components as! [OnFieldComponent] {
+            component.targetTo(selectedIndex)
+        }
     }
 }

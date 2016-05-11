@@ -1,9 +1,13 @@
-//
-//  Creature.swift
-//  ConneConne
-//
-//  Created by slightair on 5/10/16.
-//  Copyright © 2016 slightair. All rights reserved.
-//
+import GameplayKit
 
-import Foundation
+class Creature: GKEntity {
+    enum Type {
+        case Default
+    }
+
+    let type: Type
+
+    init(type: Type = .Default) {
+        self.type = type
+    }
+}
