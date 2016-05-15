@@ -2,23 +2,16 @@ import GameplayKit
 import SpriteKit
 
 class MovementComponent: GKComponent {
-    var field: Field
-    var currentGridPosition = vector_int2(0, 0)
     var nextGridPosition = vector_int2(0, 0)
     var route: [GKGridGraphNode]? = nil {
         didSet {
             if let route = route {
-                var points = route.map { pointForGridPosition($0.gridPosition) }
+                var points = route.map { onFieldComponent.pointForGridPosition($0.gridPosition) }
                 routeNode = SKShapeNode(points: &points, count: points.count)
             } else {
                 routeNode = nil
             }
         }
-    }
-
-    init(field: Field) {
-        self.field = field
-        super.init()
     }
 
     var routeNode: SKShapeNode? {
@@ -44,26 +37,29 @@ class MovementComponent: GKComponent {
         return component
     }
 
+    var onFieldComponent: OnFieldComponent {
+        guard let component = entity?.componentForClass(OnFieldComponent.self) else {
+            fatalError("MovementComponent's entity must have a OnFieldComponent")
+        }
+        return component
+    }
+
     func moveTo(gridPosition: vector_int2) {
+        let onFieldComponent = self.onFieldComponent
+
         if route != nil {
             route = nil
             renderComponent.node.removeAllActions()
-            warpTo(nextGridPosition)
+            onFieldComponent.warpTo(nextGridPosition)
         }
 
-        guard let startNode = field.graph.nodeAtGridPosition(currentGridPosition),
-            toNode = field.graph.nodeAtGridPosition(gridPosition) else {
+        let graph = onFieldComponent.field.graph
+        guard let startNode = graph.nodeAtGridPosition(onFieldComponent.currentGridPosition),
+            toNode = graph.nodeAtGridPosition(gridPosition) else {
                 return
         }
 
-        route = field.graph.findPathFromNode(startNode, toNode: toNode) as? [GKGridGraphNode]
-    }
-
-    func warpTo(gridPosition: vector_int2) {
-        currentGridPosition = gridPosition
-        nextGridPosition = gridPosition
-
-        renderComponent.node.position = pointForGridPosition(gridPosition)
+        route = graph.findPathFromNode(startNode, toNode: toNode) as? [GKGridGraphNode]
     }
 
     func tick() {
@@ -71,23 +67,20 @@ class MovementComponent: GKComponent {
             return
         }
 
-        if currentGridPosition.x != nextGridPosition.x ||
-            currentGridPosition.y != nextGridPosition.y {
+        let onFieldComponent = self.onFieldComponent
+
+        if onFieldComponent.currentGridPosition.x != nextGridPosition.x ||
+            onFieldComponent.currentGridPosition.y != nextGridPosition.y {
             return
         } else if route.count > 0 {
             nextGridPosition = route.first!.gridPosition
             self.route = route.dropFirst().map { $0 }
-            renderComponent.node.runAction(SKAction.moveTo(pointForGridPosition(nextGridPosition), duration: moveDuration)) {
-                self.currentGridPosition = self.nextGridPosition
+            renderComponent.node.runAction(SKAction.moveTo(onFieldComponent.pointForGridPosition(nextGridPosition), duration: moveDuration)) {
+                onFieldComponent.currentGridPosition = self.nextGridPosition
             }
         } else {
             self.route = nil
         }
-    }
-
-    func pointForGridPosition(gridPosition: vector_int2) -> CGPoint {
-        return CGPoint(x: Int(gridPosition.x) * GameScene.BlockSize + GameScene.BlockSize / 2,
-                       y: -Int(gridPosition.y) * GameScene.BlockSize - GameScene.BlockSize / 2)
     }
 
     override func updateWithDeltaTime(seconds: NSTimeInterval) {

@@ -58,11 +58,14 @@ class GameScene: SKScene {
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        let follower = makeFollower()
+        makeFollower(vector_int2(8, 20))
+        makeEnemy(vector_int2(8, 3))
+
         for componentsystem in componentSystems {
-            componentsystem.addComponentWithEntity(follower)
+            for creature in creatures {
+                componentsystem.addComponentWithEntity(creature)
+            }
         }
-        creatures.append(follower)
     }
 
     override func update(currentTime: CFTimeInterval) {
@@ -71,14 +74,33 @@ class GameScene: SKScene {
         }
     }
 
-    func makeFollower() -> Follower {
+    func makeFollower(position: vector_int2) -> Follower {
         let follower = Follower()
         fieldNode.addChild(follower.renderComponent.node)
 
-        let movementComponent = MovementComponent(field: field)
+        let onFieldComponent = OnFieldComponent(field: field)
+        follower.addComponent(onFieldComponent)
+
+        let movementComponent = MovementComponent()
         follower.addComponent(movementComponent)
-        movementComponent.warpTo(vector_int2(8, 20))
+
+        onFieldComponent.warpTo(position)
+
+        creatures.append(follower)
 
         return follower
+    }
+
+    func makeEnemy(position: vector_int2) -> Enemy {
+        let enemy = Enemy()
+        fieldNode.addChild(enemy.renderComponent.node)
+
+        let onFieldComponent = OnFieldComponent(field: field)
+        enemy.addComponent(onFieldComponent)
+        onFieldComponent.warpTo(position)
+
+        creatures.append(enemy)
+
+        return enemy
     }
 }
