@@ -1,7 +1,7 @@
 import GameplayKit
 import SpriteKit
 
-class MoveComponent: GKComponent {
+class MovementComponent: GKComponent {
     var field: Field
     var currentGridPosition = vector_int2(0, 0)
     var nextGridPosition = vector_int2(0, 0)
@@ -28,7 +28,7 @@ class MoveComponent: GKComponent {
 
         didSet {
             if let node = routeNode {
-                spriteNode?.parent?.addChild(node)
+                renderComponent.node.parent?.addChild(node)
             }
         }
     }
@@ -37,17 +37,17 @@ class MoveComponent: GKComponent {
         return 0.3
     }
 
-    var spriteNode: SKSpriteNode? {
-        guard let spriteComponent = entity?.componentForClass(SpriteComponent.self) else {
-            return nil
+    var renderComponent: RenderComponent {
+        guard let component = entity?.componentForClass(RenderComponent.self) else {
+            fatalError("MovementComponent's entity must have a RenderComponent")
         }
-        return spriteComponent.spriteNode
+        return component
     }
 
     func moveTo(gridPosition: vector_int2) {
         if route != nil {
             route = nil
-            spriteNode?.removeAllActions()
+            renderComponent.node.removeAllActions()
             warpTo(nextGridPosition)
         }
 
@@ -63,7 +63,7 @@ class MoveComponent: GKComponent {
         currentGridPosition = gridPosition
         nextGridPosition = gridPosition
 
-        spriteNode?.position = pointForGridPosition(gridPosition)
+        renderComponent.node.position = pointForGridPosition(gridPosition)
     }
 
     func tick() {
@@ -77,8 +77,7 @@ class MoveComponent: GKComponent {
         } else if route.count > 0 {
             nextGridPosition = route.first!.gridPosition
             self.route = route.dropFirst().map { $0 }
-
-            spriteNode?.runAction(SKAction.moveTo(pointForGridPosition(nextGridPosition), duration: moveDuration)) {
+            renderComponent.node.runAction(SKAction.moveTo(pointForGridPosition(nextGridPosition), duration: moveDuration)) {
                 self.currentGridPosition = self.nextGridPosition
             }
         } else {

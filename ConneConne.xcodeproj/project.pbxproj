@@ -21,10 +21,13 @@
 		57ED7B3D1CDB501D001E5A88 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B391CDB501D001E5A88 /* Path.swift */; };
 		57ED7B411CDB50E6001E5A88 /* PathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B401CDB50E6001E5A88 /* PathNode.swift */; };
 		57ED7B421CDB50E6001E5A88 /* PathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B401CDB50E6001E5A88 /* PathNode.swift */; };
-		57EF20951CE2286C009A3EBD /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20941CE2286C009A3EBD /* MoveComponent.swift */; };
+		57EF20951CE2286C009A3EBD /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20941CE2286C009A3EBD /* MovementComponent.swift */; };
 		57EF20971CE22A14009A3EBD /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20961CE22A14009A3EBD /* Creature.swift */; };
-		57EF20991CE22C60009A3EBD /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20981CE22C60009A3EBD /* SpriteComponent.swift */; };
 		57F36A8A1CE8174800DB170B /* ActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A891CE8174800DB170B /* ActionNode.swift */; };
+		57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A8B1CE8359B00DB170B /* Enemy.swift */; };
+		57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A8D1CE83C5000DB170B /* RenderComponent.swift */; };
+		57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A901CE83CCB00DB170B /* EntityNode.swift */; };
+		57F36A931CE8400F00DB170B /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A921CE8400F00DB170B /* Follower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +55,13 @@
 		57ED7B381CDB501D001E5A88 /* PathFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinder.swift; sourceTree = "<group>"; };
 		57ED7B391CDB501D001E5A88 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		57ED7B401CDB50E6001E5A88 /* PathNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathNode.swift; sourceTree = "<group>"; };
-		57EF20941CE2286C009A3EBD /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
+		57EF20941CE2286C009A3EBD /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 		57EF20961CE22A14009A3EBD /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
-		57EF20981CE22C60009A3EBD /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
-		57F36A891CE8174800DB170B /* ActionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionNode.swift; path = Node/ActionNode.swift; sourceTree = "<group>"; };
+		57F36A891CE8174800DB170B /* ActionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNode.swift; sourceTree = "<group>"; };
+		57F36A8B1CE8359B00DB170B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		57F36A8D1CE83C5000DB170B /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
+		57F36A901CE83CCB00DB170B /* EntityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityNode.swift; sourceTree = "<group>"; };
+		57F36A921CE8400F00DB170B /* Follower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				57EF20961CE22A14009A3EBD /* Creature.swift */,
+				57F36A921CE8400F00DB170B /* Follower.swift */,
+				57F36A8B1CE8359B00DB170B /* Enemy.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -150,8 +158,8 @@
 		57EF20931CE226A4009A3EBD /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				57EF20981CE22C60009A3EBD /* SpriteComponent.swift */,
-				57EF20941CE2286C009A3EBD /* MoveComponent.swift */,
+				57EF20941CE2286C009A3EBD /* MovementComponent.swift */,
+				57F36A8D1CE83C5000DB170B /* RenderComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -160,8 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				57F36A891CE8174800DB170B /* ActionNode.swift */,
+				57F36A901CE83CCB00DB170B /* EntityNode.swift */,
 			);
-			name = Nodes;
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,14 +274,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57EF20951CE2286C009A3EBD /* MoveComponent.swift in Sources */,
+				57EF20951CE2286C009A3EBD /* MovementComponent.swift in Sources */,
+				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,
+				57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */,
 				57ED7B411CDB50E6001E5A88 /* PathNode.swift in Sources */,
 				57ED7B3A1CDB501D001E5A88 /* PathFinder.swift in Sources */,
+				57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */,
 				57ED7B091CDAFA30001E5A88 /* GameScene.swift in Sources */,
 				57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */,
 				57F36A8A1CE8174800DB170B /* ActionNode.swift in Sources */,
-				57EF20991CE22C60009A3EBD /* SpriteComponent.swift in Sources */,
 				57ED7B3C1CDB501D001E5A88 /* Path.swift in Sources */,
+				57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */,
 				57ED7B2C1CDB1FF2001E5A88 /* Field.swift in Sources */,
 				57EF20971CE22A14009A3EBD /* Creature.swift in Sources */,
 				57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */,

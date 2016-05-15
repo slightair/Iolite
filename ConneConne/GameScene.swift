@@ -10,13 +10,13 @@ class GameScene: SKScene {
     var blockNodes = [SKNode]()
     var creatures = [Creature]()
 
-    let moveComponentSystem = GKComponentSystem(componentClass: MoveComponent.self)
-    let spriteComponentSystem = GKComponentSystem(componentClass: SpriteComponent.self)
+    let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
+    let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
 
     var componentSystems: [GKComponentSystem] {
         return [
-            spriteComponentSystem,
-            moveComponentSystem,
+            renderComponentSystem,
+            movementComponentSystem,
         ]
     }
 
@@ -39,7 +39,7 @@ class GameScene: SKScene {
                 blockNode.colorBlendFactor = 1.0
                 blockNode.tapAction = {
                     print(posString)
-                    for component in self.moveComponentSystem.components as! [MoveComponent] {
+                    for component in self.movementComponentSystem.components as! [MovementComponent] {
                         component.moveTo(node.gridPosition)
                     }
                 }
@@ -58,11 +58,11 @@ class GameScene: SKScene {
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        let creature = makeCreature()
+        let follower = makeFollower()
         for componentsystem in componentSystems {
-            componentsystem.addComponentWithEntity(creature)
+            componentsystem.addComponentWithEntity(follower)
         }
-        creatures.append(creature)
+        creatures.append(follower)
     }
 
     override func update(currentTime: CFTimeInterval) {
@@ -71,17 +71,14 @@ class GameScene: SKScene {
         }
     }
 
-    func makeCreature() -> Creature {
-        let creature = Creature()
+    func makeFollower() -> Follower {
+        let follower = Follower()
+        fieldNode.addChild(follower.renderComponent.node)
 
-        let spriteComponent = SpriteComponent()
-        creature.addComponent(spriteComponent)
-        fieldNode.addChild(spriteComponent.spriteNode)
+        let movementComponent = MovementComponent(field: field)
+        follower.addComponent(movementComponent)
+        movementComponent.warpTo(vector_int2(8, 20))
 
-        let moveComponent = MoveComponent(field: field)
-        creature.addComponent(moveComponent)
-        moveComponent.warpTo(vector_int2(8, 20))
-
-        return creature
+        return follower
     }
 }

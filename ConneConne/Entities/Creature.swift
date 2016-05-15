@@ -1,13 +1,18 @@
 import GameplayKit
+import SpriteKit
 
 class Creature: GKEntity {
-    enum Type {
-        case Default
+    var renderComponent: RenderComponent {
+        guard let component = componentForClass(RenderComponent.self) else {
+            fatalError("Creature must have a RenderComponent")
+        }
+        return component
     }
 
-    let type: Type
+    override init() {
+        super.init()
 
-    init(type: Type = .Default) {
-        self.type = type
+        let renderComponent = RenderComponent(entity: self)
+        addComponent(renderComponent)
     }
 }
