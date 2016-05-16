@@ -19,9 +19,6 @@ class OnFieldComponent: GKComponent {
 
     func warpTo(gridPosition: vector_int2) {
         currentGridPosition = gridPosition
-        if let movementComponent = entity?.componentForClass(MovementComponent.self) {
-            movementComponent.nextGridPosition = gridPosition
-        }
         renderComponent.node.position = pointForGridPosition(gridPosition)
     }
 

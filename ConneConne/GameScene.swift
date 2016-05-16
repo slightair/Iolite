@@ -10,13 +10,15 @@ class GameScene: SKScene {
     var blockNodes = [SKNode]()
     var creatures = [Creature]()
 
+    let followerAgentSystem = GKComponentSystem(componentClass: FollowerAgent.self)
     let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
     let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
 
     var componentSystems: [GKComponentSystem] {
         return [
-            renderComponentSystem,
+            followerAgentSystem,
             movementComponentSystem,
+            renderComponentSystem,
         ]
     }
 
