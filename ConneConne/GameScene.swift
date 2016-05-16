@@ -4,6 +4,9 @@ import GameplayKit
 class GameScene: SKScene {
     static let BlockSize = 16
 
+    var lastUpdateTimeInterval: NSTimeInterval = 0
+    let maximumUpdateDeltaTime: NSTimeInterval = 1.0 / 60.0
+
     let fieldNode = SKNode()
     let fieldDebugNode = SKNode()
     var field = Field()
@@ -71,8 +74,22 @@ class GameScene: SKScene {
     }
 
     override func update(currentTime: CFTimeInterval) {
+        super.update(currentTime)
+
+        if lastUpdateTimeInterval == 0 {
+            lastUpdateTimeInterval = currentTime;
+        }
+
+        guard view != nil else {
+            return
+        }
+
+        var deltaTime = currentTime - lastUpdateTimeInterval
+        deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
+        lastUpdateTimeInterval = currentTime
+
         for system in componentSystems {
-            system.updateWithDeltaTime(currentTime)
+            system.updateWithDeltaTime(deltaTime)
         }
     }
 

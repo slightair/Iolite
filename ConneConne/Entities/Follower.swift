@@ -11,9 +11,9 @@ class Follower: Creature, GKAgentDelegate {
         super.init()
 
         agent.delegate = self
-        agent.mass = 1
-        agent.maxSpeed = 5
-        agent.maxAcceleration = 1
+        agent.radius = 30.0
+        agent.maxSpeed = 250.0
+        agent.maxAcceleration = 300.0
 
         addComponent(agent)
 
@@ -26,6 +26,7 @@ class Follower: Creature, GKAgentDelegate {
         let node = renderComponent.node
         if let agent2D = agent as? GKAgent2D {
             agent2D.position = vector_float2(Float(node.position.x), Float(node.position.y))
+            print(agent2D.position)
         }
     }
 
@@ -33,6 +34,7 @@ class Follower: Creature, GKAgentDelegate {
         let node = renderComponent.node
         if let agent2D = agent as? GKAgent2D {
             node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
+            print(node.position)
         }
     }
 }
