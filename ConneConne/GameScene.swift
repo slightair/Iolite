@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     static let BlockSize = 16
 
     var lastUpdateTimeInterval: NSTimeInterval = 0
@@ -26,6 +26,9 @@ class GameScene: SKScene {
     }
 
     override func didMoveToView(view: SKView) {
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self
+
         fieldNode.position = CGPoint(x: 32, y: 460)
         fieldDebugNode.position = fieldNode.position
 
@@ -121,5 +124,9 @@ class GameScene: SKScene {
         creatures.append(enemy)
 
         return enemy
+    }
+
+    func didBeginContact(contact: SKPhysicsContact) {
+
     }
 }
