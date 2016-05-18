@@ -14,12 +14,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var creatures = [Creature]()
 
     let followerAgentSystem = GKComponentSystem(componentClass: FollowerAgent.self)
+    let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
     let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
     let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
 
     var componentSystems: [GKComponentSystem] {
         return [
             followerAgentSystem,
+            physicsComponentSystem,
             movementComponentSystem,
             renderComponentSystem,
         ]

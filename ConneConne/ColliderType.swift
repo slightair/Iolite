@@ -7,6 +7,9 @@ struct ColliderType: OptionSetType, Hashable {
 
     let rawValue: UInt32
 
+    static var Obstacle: ColliderType  { return self.init(rawValue: 1 << 0) }
+    static var Follower: ColliderType { return self.init(rawValue: 1 << 1) }
+
     var hashValue: Int {
         return Int(rawValue)
     }
