@@ -2,6 +2,30 @@ import GameplayKit
 import SpriteKit
 
 class MovementComponent: GKComponent {
+    var route: [GKGridGraphNode]? = nil {
+        didSet {
+            if let route = route {
+                let onFieldComponent = self.onFieldComponent
+                var points = route.map { onFieldComponent.pointForGridPosition($0.gridPosition) }
+                routeNode = SKShapeNode(points: &points, count: points.count)
+            } else {
+                routeNode = nil
+            }
+        }
+    }
+
+    var routeNode: SKShapeNode? {
+        willSet {
+            routeNode?.removeFromParent()
+        }
+
+        didSet {
+            if let node = routeNode {
+                renderComponent.node.parent?.addChild(node)
+            }
+        }
+    }
+
     var renderComponent: RenderComponent {
         guard let component = entity?.componentForClass(RenderComponent.self) else {
             fatalError("MovementComponent's entity must have a RenderComponent")
@@ -16,15 +40,11 @@ class MovementComponent: GKComponent {
         return component
     }
 
-    var agent: FollowerAgent {
-        guard let component = entity?.componentForClass(FollowerAgent.self) else {
-            fatalError("MovementComponent's entity must have a FollowerAgent")
-        }
-        return component
-    }
-
     func moveTo(gridPosition: vector_int2) {
+        let node = renderComponent.node
         let onFieldComponent = self.onFieldComponent
+
+        node.removeAllActions()
 
         let graph = onFieldComponent.field.graph
         guard let startNode = graph.nodeAtGridPosition(onFieldComponent.currentGridPosition),
@@ -32,18 +52,16 @@ class MovementComponent: GKComponent {
                 return
         }
 
-        print("\(startNode.gridPosition) -> \(toNode.gridPosition)")
-
         let result = graph.findPathFromNode(startNode, toNode: toNode) as! [GKGridGraphNode]
-        let graphNodes: [GKGraphNode2D] = result.map { gridGraphNode in
-            let point = onFieldComponent.pointForGridPosition(gridGraphNode.gridPosition)
-            return GKGraphNode2D(point: vector_float2(Float(point.x), Float(point.y)))
-        }
-        let path = GKPath(graphNodes: graphNodes, radius: 1.0)
-        let behavior = GKBehavior(goals: [
-            GKGoal(toFollowPath: path, maxPredictionTime: 1.0, forward: true),
-            GKGoal(toStayOnPath: path, maxPredictionTime: 1.0)
-        ])
-        agent.behavior = behavior
+        route = result
+        let sequence: [SKAction] = result.map { gridGraphNode in
+            let location = onFieldComponent.pointForGridPosition(gridGraphNode.gridPosition)
+            let moveAction = SKAction.moveTo(location, duration: 0.3)
+            let updateAction = SKAction.runBlock {
+                onFieldComponent.currentGridPosition = gridGraphNode.gridPosition
+            }
+            return [moveAction, updateAction]
+        }.reduce([], combine: +)
+        node.runAction(SKAction.sequence(sequence))
     }
 }

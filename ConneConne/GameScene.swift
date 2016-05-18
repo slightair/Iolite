@@ -13,14 +13,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var blockNodes = [SKNode]()
     var creatures = [Creature]()
 
-    let followerAgentSystem = GKComponentSystem(componentClass: FollowerAgent.self)
     let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
     let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
     let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
 
     var componentSystems: [GKComponentSystem] {
         return [
-            followerAgentSystem,
             physicsComponentSystem,
             movementComponentSystem,
             renderComponentSystem,
@@ -48,7 +46,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 blockNode.color = UIColor.darkGrayColor()
                 blockNode.colorBlendFactor = 1.0
                 blockNode.tapAction = {
-                    print(posString)
                     for component in self.movementComponentSystem.components as! [MovementComponent] {
                         component.moveTo(node.gridPosition)
                     }

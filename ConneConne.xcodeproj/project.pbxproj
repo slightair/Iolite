@@ -23,7 +23,6 @@
 		57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A901CE83CCB00DB170B /* EntityNode.swift */; };
 		57F36A931CE8400F00DB170B /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A921CE8400F00DB170B /* Follower.swift */; };
 		57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A941CE8478200DB170B /* OnFieldComponent.swift */; };
-		57F36A971CE8B51200DB170B /* FollowerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A961CE8B51200DB170B /* FollowerAgent.swift */; };
 		57F3712C1CEB538A00621A03 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */; };
 		57F3712E1CEB541600621A03 /* ColliderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3712D1CEB541600621A03 /* ColliderType.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		57F36A901CE83CCB00DB170B /* EntityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityNode.swift; sourceTree = "<group>"; };
 		57F36A921CE8400F00DB170B /* Follower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		57F36A941CE8478200DB170B /* OnFieldComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnFieldComponent.swift; sourceTree = "<group>"; };
-		57F36A961CE8B51200DB170B /* FollowerAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerAgent.swift; sourceTree = "<group>"; };
 		57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		57F3712D1CEB541600621A03 /* ColliderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColliderType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +148,6 @@
 				57EF20941CE2286C009A3EBD /* MovementComponent.swift */,
 				57F36A8D1CE83C5000DB170B /* RenderComponent.swift */,
 				57F36A941CE8478200DB170B /* OnFieldComponent.swift */,
-				57F36A961CE8B51200DB170B /* FollowerAgent.swift */,
 				57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */,
 			);
 			path = Components;
@@ -272,7 +269,6 @@
 				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,
 				57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */,
 				57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */,
-				57F36A971CE8B51200DB170B /* FollowerAgent.swift in Sources */,
 				57ED7B091CDAFA30001E5A88 /* GameScene.swift in Sources */,
 				57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */,
 				57F36A8A1CE8174800DB170B /* ActionNode.swift in Sources */,
