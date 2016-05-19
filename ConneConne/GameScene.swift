@@ -13,17 +13,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var blockNodes = [SKNode]()
     var creatures = [Creature]()
 
-    let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
-    let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
-    let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
+    lazy var componentSystems: [GKComponentSystem] = {
+        let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
+        let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
+        let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
+        let intelligenceSystem = GKComponentSystem(componentClass: IntelligenceComponent.self)
 
-    var componentSystems: [GKComponentSystem] {
         return [
             physicsComponentSystem,
             movementComponentSystem,
             renderComponentSystem,
+            intelligenceSystem,
         ]
-    }
+    }()
 
     override func didMoveToView(view: SKView) {
         physicsWorld.gravity = CGVector.zero
@@ -45,11 +47,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 blockNode.position = CGPoint(x: x * GameScene.BlockSize, y: -y * GameScene.BlockSize)
                 blockNode.color = UIColor.darkGrayColor()
                 blockNode.colorBlendFactor = 1.0
-                blockNode.tapAction = {
-                    for component in self.movementComponentSystem.components as! [MovementComponent] {
-                        component.moveTo(node.gridPosition)
-                    }
-                }
 
                 blockNodes.append(blockNode)
                 fieldNode.addChild(blockNode)
@@ -106,6 +103,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         follower.addComponent(movementComponent)
 
         onFieldComponent.warpTo(position)
+        if let intelligenceComponent = follower.componentForClass(IntelligenceComponent.self) {
+            intelligenceComponent.enterInitialState()
+        }
 
         creatures.append(follower)
 
