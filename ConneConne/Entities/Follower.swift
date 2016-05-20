@@ -13,6 +13,11 @@ class Follower: Creature {
         spriteNode.size = Follower.textureSize
         node.addChild(spriteNode)
 
+        let intelligenceComponent = IntelligenceComponent(states: [
+            FollowerMarchState(entity: self)
+        ])
+        addComponent(intelligenceComponent)
+
         let physicsComponent = PhysicsComponent(physicsBody: SKPhysicsBody(circleOfRadius: 16, center: CGPoint(x: 16, y: 16)), colliderType: .Follower)
         addComponent(physicsComponent)
 
