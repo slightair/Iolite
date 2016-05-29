@@ -1,8 +1,8 @@
 import GameplayKit
 
 class Field {
-    static let width = 16
-    static let height = 25
+    static let width = 32
+    static let height = 50
 
     var enemies: [Enemy] = []
     var graph = GKGridGraph(fromGridStartingAt: vector_int2(0, 0),
