@@ -62,8 +62,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(fieldDebugNode)
         addChild(fieldNode)
 
-        makeFollower(vector_int2(8, 20))
-        makeEnemy(vector_int2(8, 3))
+        let enemy = makeEnemy(vector_int2(8, 3))
+        field.enemies.append(enemy)
+
+        let follower = makeFollower(vector_int2(8, 20))
+        follower.mandate = .Target(enemy)
+
+        enemy.movementComponent.moveToCreature(follower)
 
         for componentsystem in componentSystems {
             for creature in creatures {
@@ -93,16 +98,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func makeFollower(position: vector_int2) -> Follower {
-        let follower = Follower()
+        let follower = Follower(field: field)
         fieldNode.addChild(follower.renderComponent.node)
 
-        let onFieldComponent = OnFieldComponent(field: field)
-        follower.addComponent(onFieldComponent)
-
-        let movementComponent = MovementComponent()
-        follower.addComponent(movementComponent)
-
-        onFieldComponent.warpTo(position)
+        follower.onFieldComponent.warpTo(position)
         if let intelligenceComponent = follower.componentForClass(IntelligenceComponent.self) {
             intelligenceComponent.enterInitialState()
         }
@@ -113,12 +112,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     func makeEnemy(position: vector_int2) -> Enemy {
-        let enemy = Enemy()
+        let enemy = Enemy(field: field)
         fieldNode.addChild(enemy.renderComponent.node)
 
-        let onFieldComponent = OnFieldComponent(field: field)
-        enemy.addComponent(onFieldComponent)
-        onFieldComponent.warpTo(position)
+        enemy.onFieldComponent.warpTo(position)
 
         creatures.append(enemy)
 

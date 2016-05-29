@@ -5,8 +5,26 @@ class Follower: Creature {
     static let textureSize = CGSize(width: 32, height: 32)
     static let textureName = "creature"
 
-    override init() {
-        super.init()
+    enum FollowerMandate {
+        case Standby
+        case Target(Enemy)
+    }
+
+    var mandate: FollowerMandate {
+        didSet {
+            switch mandate {
+            case .Target(let enemy):
+                movementComponent.moveToCreature(enemy)
+            default:
+                break
+            }
+        }
+    }
+
+    required init(field: Field) {
+        mandate = .Standby
+
+        super.init(field: field)
 
         let node = renderComponent.node
         let spriteNode = SKSpriteNode(imageNamed: Follower.textureName)

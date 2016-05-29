@@ -64,4 +64,9 @@ class MovementComponent: GKComponent {
         }.reduce([], combine: +)
         node.runAction(SKAction.sequence(sequence))
     }
+
+    func moveToCreature(creature: Creature) {
+        let targetGridPosition = creature.onFieldComponent.currentGridPosition
+        moveTo(targetGridPosition)
+    }
 }
