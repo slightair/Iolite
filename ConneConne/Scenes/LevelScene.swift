@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-class LevelScene: SKScene, SKPhysicsContactDelegate {
+class LevelScene: SKScene {
     static let BlockSize = 8
 
     var lastUpdateTimeInterval: NSTimeInterval = 0
@@ -26,8 +26,7 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
     }()
 
     override func didMoveToView(view: SKView) {
-        physicsWorld.gravity = CGVector.zero
-        physicsWorld.contactDelegate = self
+        setUpPhysics()
 
         fieldNode.position = CGPoint(x: 32, y: 460)
         addChild(fieldNode)
@@ -71,6 +70,23 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
+    func setUpPhysics() {
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self
+
+        ColliderType.definedCollisions[.Follower] = [
+            .Obstacle,
+            .Follower,
+            .Enemy,
+        ]
+
+        ColliderType.requestedContactNotifications[.Follower] = [
+            .Obstacle,
+            .Follower,
+            .Enemy,
+        ]
+    }
+
     func makeFollower(position: vector_int2) -> Follower {
         let follower = Follower(field: field)
         fieldNode.addChild(follower.renderComponent.node)
@@ -95,8 +111,10 @@ class LevelScene: SKScene, SKPhysicsContactDelegate {
 
         return enemy
     }
+}
 
+extension LevelScene: SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
-
+        print("\(contact.bodyA) >< \(contact.bodyB)")
     }
 }
