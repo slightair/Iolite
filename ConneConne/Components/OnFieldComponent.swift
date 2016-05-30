@@ -23,7 +23,7 @@ class OnFieldComponent: GKComponent {
     }
 
     func pointForGridPosition(gridPosition: vector_int2) -> CGPoint {
-        return CGPoint(x: Int(gridPosition.x) * GameScene.BlockSize + GameScene.BlockSize / 2,
-                       y: -Int(gridPosition.y) * GameScene.BlockSize - GameScene.BlockSize / 2)
+        return CGPoint(x: Int(gridPosition.x) * LevelScene.BlockSize + LevelScene.BlockSize / 2,
+                       y: -Int(gridPosition.y) * LevelScene.BlockSize - LevelScene.BlockSize / 2)
     }
 }

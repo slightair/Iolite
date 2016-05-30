@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class LevelScene: SKScene, SKPhysicsContactDelegate {
     static let BlockSize = 8
 
     var lastUpdateTimeInterval: NSTimeInterval = 0
