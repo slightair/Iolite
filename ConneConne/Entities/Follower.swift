@@ -2,8 +2,13 @@ import SpriteKit
 import GameplayKit
 
 class Follower: Creature {
-    static let textureSize = CGSize(width: 32, height: 32)
-    static let textureName = "creature"
+    override var textureSize: CGSize {
+        return CGSize(width: 32, height: 32)
+    }
+
+    override var textureName: String {
+        return "creature"
+    }
 
     enum FollowerMandate {
         case Standby
@@ -26,19 +31,15 @@ class Follower: Creature {
 
         super.init(field: field)
 
-        let node = renderComponent.node
-        let spriteNode = SKSpriteNode(imageNamed: Follower.textureName)
-        spriteNode.size = Follower.textureSize
-        node.addChild(spriteNode)
-
         let intelligenceComponent = IntelligenceComponent(states: [
             FollowerMarchState(entity: self)
         ])
         addComponent(intelligenceComponent)
 
-        let physicsComponent = PhysicsComponent(physicsBody: SKPhysicsBody(circleOfRadius: 16, center: CGPoint(x: 16, y: 16)), colliderType: .Follower)
+        let physicsComponent = PhysicsComponent(physicsBody: SKPhysicsBody(circleOfRadius: 8, center: CGPoint(x: 0, y: -8)), colliderType: .Follower)
         addComponent(physicsComponent)
 
+        let node = renderComponent.node
         node.physicsBody = physicsComponent.physicsBody
 
         agent.mass = 0.25

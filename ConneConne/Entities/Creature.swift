@@ -4,6 +4,14 @@ import SpriteKit
 class Creature: GKEntity {
     let agent = GKAgent2D()
 
+    var textureSize: CGSize {
+        fatalError("Must override textureSize")
+    }
+
+    var textureName: String {
+        fatalError("Must override textureName")
+    }
+
     var renderComponent: RenderComponent {
         guard let component = componentForClass(RenderComponent.self) else {
             fatalError("Creature must have a RenderComponent")
@@ -29,6 +37,11 @@ class Creature: GKEntity {
 
         agent.delegate = self
         addComponent(agent)
+
+        let node = renderComponent.node
+        let spriteNode = SKSpriteNode(imageNamed: textureName)
+        spriteNode.size = textureSize
+        node.addChild(spriteNode)
     }
 }
 
