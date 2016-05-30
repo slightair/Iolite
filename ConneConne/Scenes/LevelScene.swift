@@ -115,6 +115,19 @@ class LevelScene: SKScene {
 
 extension LevelScene: SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
-        print("\(contact.bodyA) >< \(contact.bodyB)")
+//        print("\(contact.bodyA) >< \(contact.bodyB)")
+    }
+}
+
+extension LevelScene {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let follower = makeFollower(vector_int2(
+            Int32(arc4random_uniform(UInt32(Field.width))),
+            Int32(arc4random_uniform(UInt32(Field.height)))))
+        follower.mandate = .Target(field.enemies.first!)
+
+        for componentsystem in componentSystems {
+            componentsystem.addComponentWithEntity(follower)
+        }
     }
 }
