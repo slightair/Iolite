@@ -2,6 +2,8 @@ import GameplayKit
 import SpriteKit
 
 class Creature: GKEntity {
+    let agent = GKAgent2D()
+
     var renderComponent: RenderComponent {
         guard let component = componentForClass(RenderComponent.self) else {
             fatalError("Creature must have a RenderComponent")
@@ -16,13 +18,6 @@ class Creature: GKEntity {
         return component
     }
 
-    var movementComponent: MovementComponent {
-        guard let component = componentForClass(MovementComponent.self) else {
-            fatalError("Creature must have a MovementComponent")
-        }
-        return component
-    }
-
     required init(field: Field) {
         super.init()
 
@@ -32,7 +27,23 @@ class Creature: GKEntity {
         let onFieldComponent = OnFieldComponent(field: field)
         addComponent(onFieldComponent)
 
-        let movementComponent = MovementComponent()
-        addComponent(movementComponent)
+        agent.delegate = self
+        addComponent(agent)
+    }
+}
+
+extension Creature: GKAgentDelegate {
+    func agentWillUpdate(agent: GKAgent) {
+        let node = renderComponent.node
+        if let agent2D = agent as? GKAgent2D {
+            agent2D.position = vector_float2(Float(node.position.x), Float(node.position.y))
+        }
+    }
+
+    func agentDidUpdate(agent: GKAgent) {
+        let node = renderComponent.node
+        if let agent2D = agent as? GKAgent2D {
+            node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
+        }
     }
 }

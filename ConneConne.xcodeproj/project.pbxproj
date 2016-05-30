@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571044DF1CFBE6CB007116D6 /* FollowerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571044DE1CFBE6CB007116D6 /* FollowerBehavior.swift */; };
 		577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */; };
 		577083CF1CEF468E00FE8C92 /* FollowerMarchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */; };
 		57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */; };
@@ -17,7 +18,6 @@
 		57ED7B131CDAFA30001E5A88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B111CDAFA30001E5A88 /* LaunchScreen.storyboard */; };
 		57ED7B2C1CDB1FF2001E5A88 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B2B1CDB1FF2001E5A88 /* Field.swift */; };
 		57ED7B2D1CDB1FF2001E5A88 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B2B1CDB1FF2001E5A88 /* Field.swift */; };
-		57EF20951CE2286C009A3EBD /* MovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20941CE2286C009A3EBD /* MovementComponent.swift */; };
 		57EF20971CE22A14009A3EBD /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20961CE22A14009A3EBD /* Creature.swift */; };
 		57F36A8A1CE8174800DB170B /* ActionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A891CE8174800DB170B /* ActionNode.swift */; };
 		57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A8B1CE8359B00DB170B /* Enemy.swift */; };
@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		571044DE1CFBE6CB007116D6 /* FollowerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerBehavior.swift; sourceTree = "<group>"; };
 		577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligenceComponent.swift; sourceTree = "<group>"; };
 		577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerMarchState.swift; sourceTree = "<group>"; };
 		57ED7B011CDAFA30001E5A88 /* ConneConne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConneConne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +54,6 @@
 		57ED7B191CDAFA30001E5A88 /* ConneConneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConneConneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ED7B1F1CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57ED7B2B1CDB1FF2001E5A88 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
-		57EF20941CE2286C009A3EBD /* MovementComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementComponent.swift; sourceTree = "<group>"; };
 		57EF20961CE22A14009A3EBD /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		57F36A891CE8174800DB170B /* ActionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionNode.swift; sourceTree = "<group>"; };
 		57F36A8B1CE8359B00DB170B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -83,12 +83,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		577083CD1CEF460600FE8C92 /* FollowerIntellifenceState */ = {
+		571044DD1CFBE645007116D6 /* Behaviors */ = {
+			isa = PBXGroup;
+			children = (
+				571044DE1CFBE6CB007116D6 /* FollowerBehavior.swift */,
+			);
+			path = Behaviors;
+			sourceTree = "<group>";
+		};
+		577083CD1CEF460600FE8C92 /* FollowerIntelligenceState */ = {
 			isa = PBXGroup;
 			children = (
 				577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */,
 			);
-			name = FollowerIntellifenceState;
+			name = FollowerIntelligenceState;
 			sourceTree = "<group>";
 		};
 		57ED7AF81CDAFA30001E5A88 = {
@@ -116,6 +124,7 @@
 				57EF20931CE226A4009A3EBD /* Components */,
 				57EF20921CE22689009A3EBD /* Entities */,
 				57ED7B2A1CDB1E7C001E5A88 /* Model */,
+				571044DD1CFBE645007116D6 /* Behaviors */,
 				57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */,
 				57ED7B081CDAFA30001E5A88 /* GameScene.swift */,
 				57ED7B0A1CDAFA30001E5A88 /* GameViewController.swift */,
@@ -157,8 +166,7 @@
 		57EF20931CE226A4009A3EBD /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				577083CD1CEF460600FE8C92 /* FollowerIntellifenceState */,
-				57EF20941CE2286C009A3EBD /* MovementComponent.swift */,
+				577083CD1CEF460600FE8C92 /* FollowerIntelligenceState */,
 				57F36A8D1CE83C5000DB170B /* RenderComponent.swift */,
 				57F36A941CE8478200DB170B /* OnFieldComponent.swift */,
 				57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */,
@@ -277,7 +285,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57EF20951CE2286C009A3EBD /* MovementComponent.swift in Sources */,
 				57F3712E1CEB541600621A03 /* ColliderType.swift in Sources */,
 				57F3712C1CEB538A00621A03 /* PhysicsComponent.swift in Sources */,
 				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,
@@ -293,6 +300,7 @@
 				57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */,
 				57EF20971CE22A14009A3EBD /* Creature.swift in Sources */,
 				57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */,
+				571044DF1CFBE6CB007116D6 /* FollowerBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

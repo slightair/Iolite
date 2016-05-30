@@ -14,7 +14,7 @@ class Follower: Creature {
         didSet {
             switch mandate {
             case .Target(let enemy):
-                movementComponent.moveToCreature(enemy)
+                agent.behavior = FollowerBehavior.behaviorForAgent(agent, targetAgent: enemy.agent)
             default:
                 break
             }
@@ -40,5 +40,10 @@ class Follower: Creature {
         addComponent(physicsComponent)
 
         node.physicsBody = physicsComponent.physicsBody
+
+        agent.mass = 0.25
+        agent.radius = 16.0
+        agent.maxSpeed = 50.0
+        agent.maxAcceleration = 300.0
     }
 }

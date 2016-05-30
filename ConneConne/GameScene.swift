@@ -12,14 +12,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var creatures = [Creature]()
 
     lazy var componentSystems: [GKComponentSystem] = {
+        let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
         let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
-        let movementComponentSystem = GKComponentSystem(componentClass: MovementComponent.self)
         let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
         let intelligenceSystem = GKComponentSystem(componentClass: IntelligenceComponent.self)
 
         return [
+            agentComponentSystem,
             physicsComponentSystem,
-            movementComponentSystem,
             renderComponentSystem,
             intelligenceSystem,
         ]
