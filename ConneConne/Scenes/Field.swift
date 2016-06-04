@@ -1,8 +1,9 @@
 import GameplayKit
 
 class Field {
-    static let width = 32
-    static let height = 50
+    static let Width = 32
+    static let Height = 50
 
+    var followers: [Follower] = []
     var enemies: [Enemy] = []
 }

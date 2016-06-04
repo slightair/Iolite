@@ -9,7 +9,6 @@ class LevelScene: SKScene {
 
     let fieldNode = SKNode()
     var field = Field()
-    var creatures = [Creature]()
 
     lazy var componentSystems: [GKComponentSystem] = {
         let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
@@ -32,7 +31,6 @@ class LevelScene: SKScene {
         addChild(fieldNode)
 
         let enemy = makeEnemy(vector_int2(16, 3))
-        field.enemies.append(enemy)
 
         let follower1 = makeFollower(vector_int2(4, 45))
         follower1.mandate = .Target(enemy)
@@ -42,12 +40,6 @@ class LevelScene: SKScene {
 
         let follower3 = makeFollower(vector_int2(28, 44))
         follower3.mandate = .Target(enemy)
-
-        for componentsystem in componentSystems {
-            for creature in creatures {
-                componentsystem.addComponentWithEntity(creature)
-            }
-        }
     }
 
     override func update(currentTime: CFTimeInterval) {
@@ -96,7 +88,11 @@ class LevelScene: SKScene {
             intelligenceComponent.enterInitialState()
         }
 
-        creatures.append(follower)
+        field.followers.append(follower)
+
+        for componentsystem in componentSystems {
+            componentsystem.addComponentWithEntity(follower)
+        }
 
         return follower
     }
@@ -107,7 +103,11 @@ class LevelScene: SKScene {
 
         enemy.onFieldComponent.warpTo(position)
 
-        creatures.append(enemy)
+        field.enemies.append(enemy)
+
+        for componentsystem in componentSystems {
+            componentsystem.addComponentWithEntity(enemy)
+        }
 
         return enemy
     }
@@ -151,12 +151,8 @@ extension LevelScene: SKPhysicsContactDelegate {
 extension LevelScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let follower = makeFollower(vector_int2(
-            Int32(arc4random_uniform(UInt32(Field.width))),
-            Int32(arc4random_uniform(UInt32(Field.height)))))
+            Int32(arc4random_uniform(UInt32(Field.Width))),
+            Int32(arc4random_uniform(UInt32(Field.Height)))))
         follower.mandate = .Target(field.enemies.first!)
-
-        for componentsystem in componentSystems {
-            componentsystem.addComponentWithEntity(follower)
-        }
     }
 }
