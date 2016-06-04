@@ -32,4 +32,12 @@ struct ColliderType: OptionSetType, Hashable {
         }
         return mask?.rawValue ?? 0
     }
+
+    func notifyOnContactWithColliderType(colliderType: ColliderType) -> Bool {
+        if let requestedContacts = ColliderType.requestedContactNotifications[self] {
+            return requestedContacts.contains(colliderType)
+        }
+
+        return false
+    }
 }

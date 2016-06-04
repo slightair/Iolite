@@ -10,6 +10,7 @@
 		571044DF1CFBE6CB007116D6 /* FollowerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571044DE1CFBE6CB007116D6 /* FollowerBehavior.swift */; };
 		571044E31CFBF4AC007116D6 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571044E11CFBF4AC007116D6 /* Field.swift */; };
 		571044E41CFBF4AC007116D6 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571044E21CFBF4AC007116D6 /* LevelScene.swift */; };
+		57630E0D1D027F310003CA6D /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */; };
 		577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */; };
 		577083CF1CEF468E00FE8C92 /* FollowerMarchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */; };
 		57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		571044DE1CFBE6CB007116D6 /* FollowerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerBehavior.swift; sourceTree = "<group>"; };
 		571044E11CFBF4AC007116D6 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		571044E21CFBF4AC007116D6 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
+		57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligenceComponent.swift; sourceTree = "<group>"; };
 		577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerMarchState.swift; sourceTree = "<group>"; };
 		57ED7B011CDAFA30001E5A88 /* ConneConne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConneConne.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				57F3712D1CEB541600621A03 /* ColliderType.swift */,
+				57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */,
 			);
 			path = Physics;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57F3712E1CEB541600621A03 /* ColliderType.swift in Sources */,
+				57630E0D1D027F310003CA6D /* ContactNotifiableType.swift in Sources */,
 				57F3712C1CEB538A00621A03 /* PhysicsComponent.swift in Sources */,
 				571044E41CFBF4AC007116D6 /* LevelScene.swift in Sources */,
 				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,

@@ -48,3 +48,19 @@ class Follower: Creature {
         agent.maxAcceleration = 300.0
     }
 }
+
+extension Follower: ContactNotifiableType {
+    func contactWithEntityDidBegin(entity: GKEntity) {
+        guard let enemy = entity as? Enemy else {
+            return
+        }
+        print("contact \(enemy)")
+    }
+
+    func contactWithEntityDidEnd(entity: GKEntity) {
+        guard let enemy = entity as? Enemy else {
+            return
+        }
+        print("leave \(enemy)")
+    }
+}

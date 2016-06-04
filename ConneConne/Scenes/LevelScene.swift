@@ -115,7 +115,36 @@ class LevelScene: SKScene {
 
 extension LevelScene: SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
-//        print("\(contact.bodyA) >< \(contact.bodyB)")
+        handleContact(contact) { (notifiableType: ContactNotifiableType, otherEntity: GKEntity) in
+            notifiableType.contactWithEntityDidBegin(otherEntity)
+        }
+    }
+
+    func didEndContact(contact: SKPhysicsContact) {
+        handleContact(contact) { (notifiableType: ContactNotifiableType, otherEntity: GKEntity) in
+            notifiableType.contactWithEntityDidEnd(otherEntity)
+        }
+    }
+
+    func handleContact(contact: SKPhysicsContact, contactCallback: (ContactNotifiableType, GKEntity) -> Void) {
+        let colliderTypeA = ColliderType(rawValue: contact.bodyA.categoryBitMask)
+        let colliderTypeB = ColliderType(rawValue: contact.bodyB.categoryBitMask)
+
+        let aWantsCallback = colliderTypeA.notifyOnContactWithColliderType(colliderTypeB)
+        let bWantsCallback = colliderTypeB.notifyOnContactWithColliderType(colliderTypeA)
+
+        assert(aWantsCallback || bWantsCallback, "Unhandled physics contact - A = \(colliderTypeA), B = \(colliderTypeB)")
+
+        let entityA = (contact.bodyA.node as? EntityNode)?.entity
+        let entityB = (contact.bodyB.node as? EntityNode)?.entity
+
+        if let notifiableEntity = entityA as? ContactNotifiableType, otherEntity = entityB where aWantsCallback {
+            contactCallback(notifiableEntity, otherEntity)
+        }
+
+        if let notifiableEntity = entityB as? ContactNotifiableType, otherEntity = entityA where bWantsCallback {
+            contactCallback(notifiableEntity, otherEntity)
+        }
     }
 }
 
