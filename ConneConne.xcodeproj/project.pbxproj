@@ -13,6 +13,8 @@
 		57630E0D1D027F310003CA6D /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */; };
 		577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */; };
 		577083CF1CEF468E00FE8C92 /* FollowerMarchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */; };
+		57A189DC1D04E47200349EE6 /* LifeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DB1D04E47200349EE6 /* LifeComponent.swift */; };
+		57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */; };
 		57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */; };
 		57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B0A1CDAFA30001E5A88 /* GameViewController.swift */; };
 		57ED7B0E1CDAFA30001E5A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B0C1CDAFA30001E5A88 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 		57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligenceComponent.swift; sourceTree = "<group>"; };
 		577083CE1CEF468E00FE8C92 /* FollowerMarchState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerMarchState.swift; sourceTree = "<group>"; };
+		57A189DB1D04E47200349EE6 /* LifeComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeComponent.swift; sourceTree = "<group>"; };
+		57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureConfiguration.swift; sourceTree = "<group>"; };
 		57ED7B011CDAFA30001E5A88 /* ConneConne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConneConne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57ED7B0A1CDAFA30001E5A88 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 			children = (
 				57F36A921CE8400F00DB170B /* Follower.swift */,
 				57F36A8B1CE8359B00DB170B /* Enemy.swift */,
+				57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -172,9 +177,10 @@
 			isa = PBXGroup;
 			children = (
 				577083CD1CEF460600FE8C92 /* FollowerIntelligenceState */,
+				57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */,
 				57F36A8D1CE83C5000DB170B /* RenderComponent.swift */,
 				57F36A941CE8478200DB170B /* OnFieldComponent.swift */,
-				57F3712B1CEB538A00621A03 /* PhysicsComponent.swift */,
+				57A189DB1D04E47200349EE6 /* LifeComponent.swift */,
 				577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */,
 			);
 			path = Components;
@@ -298,11 +304,13 @@
 				57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */,
 				571044E31CFBF4AC007116D6 /* Field.swift in Sources */,
 				577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */,
+				57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */,
 				57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */,
 				577083CF1CEF468E00FE8C92 /* FollowerMarchState.swift in Sources */,
 				57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */,
 				57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */,
 				57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */,
+				57A189DC1D04E47200349EE6 /* LifeComponent.swift in Sources */,
 				571044DF1CFBE6CB007116D6 /* FollowerBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

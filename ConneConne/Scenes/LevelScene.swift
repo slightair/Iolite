@@ -14,12 +14,16 @@ class LevelScene: SKScene {
         let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
         let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
         let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
+        let onFieldComponentSystem = GKComponentSystem(componentClass: OnFieldComponent.self)
+        let lifeComponentSystem = GKComponentSystem(componentClass: LifeComponent.self)
         let intelligenceSystem = GKComponentSystem(componentClass: IntelligenceComponent.self)
 
         return [
             agentComponentSystem,
             physicsComponentSystem,
             renderComponentSystem,
+            onFieldComponentSystem,
+            lifeComponentSystem,
             intelligenceSystem,
         ]
     }()

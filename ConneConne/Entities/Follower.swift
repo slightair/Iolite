@@ -4,24 +4,16 @@ import GameplayKit
 class Follower: GKEntity {
     let agent = GKAgent2D()
 
-    var textureSize: CGSize {
-        return CGSize(width: 32, height: 32)
-    }
-
-    var textureName: String {
-        return "creature"
-    }
-
     var renderComponent: RenderComponent {
         guard let component = componentForClass(RenderComponent.self) else {
-            fatalError("Creature must have a RenderComponent")
+            fatalError("Follower must have a RenderComponent")
         }
         return component
     }
 
     var onFieldComponent: OnFieldComponent {
         guard let component = componentForClass(OnFieldComponent.self) else {
-            fatalError("Creature must have a OnFieldComponent")
+            fatalError("Follower must have a OnFieldComponent")
         }
         return component
     }
@@ -47,6 +39,10 @@ class Follower: GKEntity {
 
         super.init()
 
+        setUpComponents(field)
+    }
+
+    func setUpComponents(field: Field) {
         let physicsBody = SKPhysicsBody(circleOfRadius: 8, center: CGPoint(x: 0, y: -8))
 
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody, colliderType: .Follower)
@@ -58,16 +54,15 @@ class Follower: GKEntity {
         let onFieldComponent = OnFieldComponent(field: field)
         addComponent(onFieldComponent)
 
+        let lifeComponent = LifeComponent(maxHP: maxHP)
+        addComponent(lifeComponent)
+
         let intelligenceComponent = IntelligenceComponent(states: [
             FollowerMarchState(entity: self)
         ])
         addComponent(intelligenceComponent)
 
-        agent.mass = 0.25
-        agent.radius = 16.0
-        agent.maxSpeed = 50.0
-        agent.maxAcceleration = 300.0
-        agent.delegate = self
+        setUpAgent(agent)
         addComponent(agent)
 
         let node = renderComponent.node
@@ -76,6 +71,28 @@ class Follower: GKEntity {
         let spriteNode = SKSpriteNode(imageNamed: textureName)
         spriteNode.size = textureSize
         node.addChild(spriteNode)
+    }
+}
+
+extension Follower: CreatureConfiguration {
+    var textureSize: CGSize {
+        return CGSize(width: 32, height: 32)
+    }
+
+    var textureName: String {
+        return "creature"
+    }
+
+    var maxHP: Int {
+        return 10
+    }
+
+    func setUpAgent(agent: GKAgent2D) {
+        agent.mass = 0.25
+        agent.radius = 16.0
+        agent.maxSpeed = 50.0
+        agent.maxAcceleration = 300.0
+        agent.delegate = self
     }
 }
 
