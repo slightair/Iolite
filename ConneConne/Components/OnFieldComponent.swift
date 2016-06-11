@@ -14,6 +14,7 @@ class OnFieldComponent: GKComponent {
 
     init(field: Field) {
         self.field = field
+
         super.init()
     }
 

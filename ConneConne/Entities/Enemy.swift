@@ -36,7 +36,7 @@ class Enemy: GKEntity {
         let onFieldComponent = OnFieldComponent(field: field)
         addComponent(onFieldComponent)
 
-        let lifeComponent = LifeComponent(maxHP: maxHP)
+        let lifeComponent = LifeComponent(life: initialLife, maximumLife: maximumLife)
         addComponent(lifeComponent)
 
         setUpAgent(agent)
@@ -60,7 +60,11 @@ extension Enemy: CreatureConfiguration {
         return "enemy"
     }
 
-    var maxHP: Int {
+    var initialLife: Int {
+        return 100
+    }
+
+    var maximumLife: Int {
         return 100
     }
 

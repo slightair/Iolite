@@ -7,7 +7,8 @@ class LevelScene: SKScene {
     var lastUpdateTimeInterval: NSTimeInterval = 0
     let maximumUpdateDeltaTime: NSTimeInterval = 1.0 / 60.0
 
-    let fieldNode = SKNode()
+    let worldNode = SKNode()
+    var worldLayerNodes = [WorldLayer: SKNode]()
     var field = Field()
 
     lazy var componentSystems: [GKComponentSystem] = {
@@ -29,10 +30,17 @@ class LevelScene: SKScene {
     }()
 
     override func didMoveToView(view: SKView) {
-        setUpPhysics()
+        worldNode.name = "world"
+        addChild(worldNode)
 
-        fieldNode.position = CGPoint(x: 32, y: 460)
-        addChild(fieldNode)
+        for layer in WorldLayer.allLayers {
+            let layerNode = SKNode()
+            layerNode.name = layer.nodeName
+            worldLayerNodes[layer] = layerNode
+            worldNode.addChild(layerNode)
+        }
+
+        setUpPhysics()
 
         let enemy = makeEnemy(vector_int2(16, 3))
 
@@ -66,6 +74,11 @@ class LevelScene: SKScene {
         }
     }
 
+    func addChild(node: SKNode, toWorldLayer worldLayer: WorldLayer) {
+        let worldLayerNode = worldLayerNodes[worldLayer]!
+        worldLayerNode.addChild(node)
+    }
+
     func setUpPhysics() {
         physicsWorld.gravity = CGVector.zero
         physicsWorld.contactDelegate = self
@@ -85,7 +98,7 @@ class LevelScene: SKScene {
 
     func makeFollower(position: vector_int2) -> Follower {
         let follower = Follower(field: field)
-        fieldNode.addChild(follower.renderComponent.node)
+        addChild(follower.renderComponent.node, toWorldLayer: .Characters)
 
         follower.onFieldComponent.warpTo(position)
         if let intelligenceComponent = follower.componentForClass(IntelligenceComponent.self) {
@@ -103,7 +116,7 @@ class LevelScene: SKScene {
 
     func makeEnemy(position: vector_int2) -> Enemy {
         let enemy = Enemy(field: field)
-        fieldNode.addChild(enemy.renderComponent.node)
+        addChild(enemy.renderComponent.node, toWorldLayer: .Characters)
 
         enemy.onFieldComponent.warpTo(position)
 

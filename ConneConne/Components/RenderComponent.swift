@@ -6,5 +6,7 @@ class RenderComponent: GKComponent {
 
     init(entity: GKEntity) {
         node.entity = entity
+
+        super.init()
     }
 }

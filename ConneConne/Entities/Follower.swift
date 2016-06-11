@@ -54,7 +54,7 @@ class Follower: GKEntity {
         let onFieldComponent = OnFieldComponent(field: field)
         addComponent(onFieldComponent)
 
-        let lifeComponent = LifeComponent(maxHP: maxHP)
+        let lifeComponent = LifeComponent(life: initialLife, maximumLife: maximumLife)
         addComponent(lifeComponent)
 
         let intelligenceComponent = IntelligenceComponent(states: [
@@ -83,7 +83,11 @@ extension Follower: CreatureConfiguration {
         return "creature"
     }
 
-    var maxHP: Int {
+    var initialLife: Int {
+        return 8
+    }
+
+    var maximumLife: Int {
         return 10
     }
 

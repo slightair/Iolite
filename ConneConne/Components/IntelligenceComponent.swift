@@ -8,6 +8,8 @@ class IntelligenceComponent: GKComponent {
     init(states: [GKState]) {
         stateMachine = GKStateMachine(states: states)
         initialStateClass = states.first!.dynamicType
+
+        super.init()
     }
 
     override func updateWithDeltaTime(seconds: NSTimeInterval) {

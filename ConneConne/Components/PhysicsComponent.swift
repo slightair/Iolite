@@ -10,5 +10,7 @@ class PhysicsComponent: GKComponent {
         self.physicsBody.categoryBitMask = colliderType.categoryMask
         self.physicsBody.collisionBitMask = colliderType.collisionMask
         self.physicsBody.contactTestBitMask = colliderType.contactMask
+
+        super.init()
     }
 }
