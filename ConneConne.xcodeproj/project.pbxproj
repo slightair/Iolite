@@ -18,7 +18,6 @@
 		57ED7B0E1CDAFA30001E5A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B0C1CDAFA30001E5A88 /* Main.storyboard */; };
 		57ED7B101CDAFA30001E5A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B0F1CDAFA30001E5A88 /* Assets.xcassets */; };
 		57ED7B131CDAFA30001E5A88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B111CDAFA30001E5A88 /* LaunchScreen.storyboard */; };
-		57EF20971CE22A14009A3EBD /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF20961CE22A14009A3EBD /* Creature.swift */; };
 		57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A8B1CE8359B00DB170B /* Enemy.swift */; };
 		57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A8D1CE83C5000DB170B /* RenderComponent.swift */; };
 		57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F36A901CE83CCB00DB170B /* EntityNode.swift */; };
@@ -54,7 +53,6 @@
 		57ED7B141CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57ED7B191CDAFA30001E5A88 /* ConneConneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConneConneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ED7B1F1CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		57EF20961CE22A14009A3EBD /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		57F36A8B1CE8359B00DB170B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		57F36A8D1CE83C5000DB170B /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
 		57F36A901CE83CCB00DB170B /* EntityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityNode.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 		57EF20921CE22689009A3EBD /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				57EF20961CE22A14009A3EBD /* Creature.swift */,
 				57F36A921CE8400F00DB170B /* Follower.swift */,
 				57F36A8B1CE8359B00DB170B /* Enemy.swift */,
 			);
@@ -305,7 +302,6 @@
 				577083CF1CEF468E00FE8C92 /* FollowerMarchState.swift in Sources */,
 				57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */,
 				57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */,
-				57EF20971CE22A14009A3EBD /* Creature.swift in Sources */,
 				57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */,
 				571044DF1CFBE6CB007116D6 /* FollowerBehavior.swift in Sources */,
 			);

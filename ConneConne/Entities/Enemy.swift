@@ -1,22 +1,69 @@
 import SpriteKit
 import GameplayKit
 
-class Enemy: Creature {
-    override var textureSize: CGSize {
+class Enemy: GKEntity {
+    let agent = GKAgent2D()
+
+    var textureSize: CGSize {
         return CGSize(width: 96, height: 96)
     }
 
-    override var textureName: String {
+    var textureName: String {
         return "enemy"
     }
 
-    required init(field: Field) {
-        super.init(field: field)
+    var renderComponent: RenderComponent {
+        guard let component = componentForClass(RenderComponent.self) else {
+            fatalError("Creature must have a RenderComponent")
+        }
+        return component
+    }
 
-        let physicsComponent = PhysicsComponent(physicsBody: SKPhysicsBody(circleOfRadius: 24, center: CGPoint(x: 0, y: -24)), colliderType: .Enemy)
+    var onFieldComponent: OnFieldComponent {
+        guard let component = componentForClass(OnFieldComponent.self) else {
+            fatalError("Creature must have a OnFieldComponent")
+        }
+        return component
+    }
+
+    required init(field: Field) {
+        super.init()
+
+        let physicsBody = SKPhysicsBody(circleOfRadius: 24, center: CGPoint(x: 0, y: -24))
+
+        let physicsComponent = PhysicsComponent(physicsBody: physicsBody, colliderType: .Enemy)
         addComponent(physicsComponent)
+
+        let renderComponent = RenderComponent(entity: self)
+        addComponent(renderComponent)
+
+        let onFieldComponent = OnFieldComponent(field: field)
+        addComponent(onFieldComponent)
+
+        agent.delegate = self
+        addComponent(agent)
 
         let node = renderComponent.node
         node.physicsBody = physicsComponent.physicsBody
+
+        let spriteNode = SKSpriteNode(imageNamed: textureName)
+        spriteNode.size = textureSize
+        node.addChild(spriteNode)
+    }
+}
+
+extension Enemy: GKAgentDelegate {
+    func agentWillUpdate(agent: GKAgent) {
+        let node = renderComponent.node
+        if let agent2D = agent as? GKAgent2D {
+            agent2D.position = vector_float2(Float(node.position.x), Float(node.position.y))
+        }
+    }
+
+    func agentDidUpdate(agent: GKAgent) {
+        let node = renderComponent.node
+        if let agent2D = agent as? GKAgent2D {
+            node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
+        }
     }
 }
