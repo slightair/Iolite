@@ -2,14 +2,24 @@ import SpriteKit
 import GameplayKit
 
 class LevelScene: SKScene {
-    static let BlockSize = 8
-
     var lastUpdateTimeInterval: NSTimeInterval = 0
     let maximumUpdateDeltaTime: NSTimeInterval = 1.0 / 60.0
 
     let worldNode = SKNode()
     var worldLayerNodes = [WorldLayer: SKNode]()
     var field = Field()
+
+    var blockSize: CGFloat {
+        return 8
+    }
+
+    var fieldSize: CGSize {
+        return CGSize(width: 256, height: 400)
+    }
+
+    var fieldOffset: CGPoint {
+        return CGPoint(x: 0, y: 28)
+    }
 
     lazy var componentSystems: [GKComponentSystem] = {
         let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
@@ -30,6 +40,8 @@ class LevelScene: SKScene {
     }()
 
     override func didMoveToView(view: SKView) {
+        OnFieldComponent.scene = self
+
         worldNode.name = "world"
         addChild(worldNode)
 
@@ -42,15 +54,15 @@ class LevelScene: SKScene {
 
         setUpPhysics()
 
-        let enemy = makeEnemy(vector_int2(16, 3))
+        let enemy = makeEnemy(vector_int2(16, 45))
 
-        let follower1 = makeFollower(vector_int2(4, 45))
+        let follower1 = makeFollower(vector_int2(4, 5))
         follower1.mandate = .Target(enemy)
 
-        let follower2 = makeFollower(vector_int2(16, 46))
+        let follower2 = makeFollower(vector_int2(16, 4))
         follower2.mandate = .Target(enemy)
 
-        let follower3 = makeFollower(vector_int2(28, 44))
+        let follower3 = makeFollower(vector_int2(28, 6))
         follower3.mandate = .Target(enemy)
     }
 

@@ -2,6 +2,8 @@ import GameplayKit
 import SpriteKit
 
 class OnFieldComponent: GKComponent {
+    static var scene: SKScene?
+
     var field: Field
     var currentGridPosition = vector_int2(0, 0)
 
@@ -24,7 +26,14 @@ class OnFieldComponent: GKComponent {
     }
 
     func pointForGridPosition(gridPosition: vector_int2) -> CGPoint {
-        return CGPoint(x: Int(gridPosition.x) * LevelScene.BlockSize + LevelScene.BlockSize / 2,
-                       y: -Int(gridPosition.y) * LevelScene.BlockSize - LevelScene.BlockSize / 2)
+        guard let scene = OnFieldComponent.scene as? LevelScene else {
+            return CGPoint.zero
+        }
+
+        let baseX = (scene.size.width - scene.fieldSize.width) / 2 + scene.fieldOffset.x
+        let baseY = (scene.size.height - scene.fieldSize.height) / 2 + scene.fieldOffset.y
+
+        return CGPoint(x: baseX + CGFloat(gridPosition.x) * scene.blockSize + scene.blockSize / 2,
+                       y: baseY + CGFloat(gridPosition.y) * scene.blockSize + scene.blockSize / 2)
     }
 }
