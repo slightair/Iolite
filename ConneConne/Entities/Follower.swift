@@ -18,6 +18,13 @@ class Follower: GKEntity {
         return component
     }
 
+    var lifeComponent: LifeComponent {
+        guard let component = componentForClass(LifeComponent.self) else {
+            fatalError("Follower must have a LifeComponent")
+        }
+        return component
+    }
+
     enum FollowerMandate {
         case Standby
         case Target(Enemy)
@@ -43,8 +50,6 @@ class Follower: GKEntity {
     }
 
     func setUpComponents(field: Field) {
-        let physicsBody = SKPhysicsBody(circleOfRadius: 8, center: CGPoint(x: 0, y: -8))
-
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody, colliderType: .Follower)
         addComponent(physicsComponent)
 
@@ -75,27 +80,33 @@ class Follower: GKEntity {
 }
 
 extension Follower: CreatureConfiguration {
+    var physicsBody: SKPhysicsBody {
+        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Follower.physicsBodyCircleOfRadius,
+                             center: GameConfiguration.Creature.Follower.physicsBodyCenter)
+    }
+
     var textureSize: CGSize {
-        return CGSize(width: 32, height: 32)
+        return GameConfiguration.Creature.Follower.textureSize
     }
 
     var textureName: String {
-        return "creature"
+        return GameConfiguration.Creature.Follower.textureName
     }
 
     var initialLife: Int {
-        return 8
+        return GameConfiguration.Creature.Follower.initialLife
     }
 
     var maximumLife: Int {
-        return 10
+        return GameConfiguration.Creature.Follower.maximumLife
     }
 
     func setUpAgent(agent: GKAgent2D) {
-        agent.mass = 0.25
-        agent.radius = 16.0
-        agent.maxSpeed = 50.0
-        agent.maxAcceleration = 300.0
+        agent.mass = GameConfiguration.Creature.Follower.agentMass
+        agent.radius = GameConfiguration.Creature.Follower.agentRadius
+        agent.maxSpeed = GameConfiguration.Creature.Follower.agentMaxSpeed
+        agent.maxAcceleration = GameConfiguration.Creature.Follower.agentMaxAcceleration
+
         agent.delegate = self
     }
 }

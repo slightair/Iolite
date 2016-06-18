@@ -30,10 +30,10 @@ class OnFieldComponent: GKComponent {
             return CGPoint.zero
         }
 
-        let baseX = (scene.size.width - scene.fieldSize.width) / 2 + scene.fieldOffset.x
-        let baseY = (scene.size.height - scene.fieldSize.height) / 2 + scene.fieldOffset.y
+        let baseX = (scene.size.width - GameConfiguration.Field.size.width) / 2 + GameConfiguration.Field.offset.x
+        let baseY = (scene.size.height - GameConfiguration.Field.size.height) / 2 + GameConfiguration.Field.offset.y
 
-        return CGPoint(x: baseX + CGFloat(gridPosition.x) * scene.blockSize + scene.blockSize / 2,
-                       y: baseY + CGFloat(gridPosition.y) * scene.blockSize + scene.blockSize / 2)
+        return CGPoint(x: baseX + CGFloat(gridPosition.x) * GameConfiguration.Field.blockSize + GameConfiguration.Field.blockSize / 2,
+                       y: baseY + CGFloat(gridPosition.y) * GameConfiguration.Field.blockSize + GameConfiguration.Field.blockSize / 2)
     }
 }

@@ -2,6 +2,8 @@ import SpriteKit
 import GameplayKit
 
 protocol CreatureConfiguration: class {
+    var physicsBody: SKPhysicsBody { get }
+
     var textureSize: CGSize { get }
     var textureName: String { get }
 

@@ -9,18 +9,6 @@ class LevelScene: SKScene {
     var worldLayerNodes = [WorldLayer: SKNode]()
     var field = Field()
 
-    var blockSize: CGFloat {
-        return 8
-    }
-
-    var fieldSize: CGSize {
-        return CGSize(width: 256, height: 400)
-    }
-
-    var fieldOffset: CGPoint {
-        return CGPoint(x: 0, y: 28)
-    }
-
     lazy var componentSystems: [GKComponentSystem] = {
         let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
         let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
@@ -54,15 +42,15 @@ class LevelScene: SKScene {
 
         setUpPhysics()
 
-        let enemy = makeEnemy(vector_int2(16, 45))
+        let enemy = addEnemy(vector_int2(16, 45))
 
-        let follower1 = makeFollower(vector_int2(4, 5))
+        let follower1 = addFollower(vector_int2(4, 5))
         follower1.mandate = .Target(enemy)
 
-        let follower2 = makeFollower(vector_int2(16, 4))
+        let follower2 = addFollower(vector_int2(16, 4))
         follower2.mandate = .Target(enemy)
 
-        let follower3 = makeFollower(vector_int2(28, 6))
+        let follower3 = addFollower(vector_int2(28, 6))
         follower3.mandate = .Target(enemy)
     }
 
@@ -108,9 +96,22 @@ class LevelScene: SKScene {
         ]
     }
 
-    func makeFollower(position: vector_int2) -> Follower {
+    func addFollower(position: vector_int2) -> Follower {
         let follower = Follower(field: field)
-        addChild(follower.renderComponent.node, toWorldLayer: .Characters)
+
+        let renderNode = follower.renderComponent.node
+        addChild(renderNode, toWorldLayer: .Characters)
+
+        let lifeGaugeNode = follower.lifeComponent.lifeGaugeNode
+        addChild(lifeGaugeNode, toWorldLayer: .Info)
+
+        let xRange = SKRange(constantValue: GameConfiguration.Creature.Follower.lifeGaugeOffset.x)
+        let yRange = SKRange(constantValue: GameConfiguration.Creature.Follower.lifeGaugeOffset.y)
+
+        let constraint = SKConstraint.positionX(xRange, y: yRange)
+        constraint.referenceNode = renderNode
+
+        lifeGaugeNode.constraints = [constraint]
 
         follower.onFieldComponent.warpTo(position)
         if let intelligenceComponent = follower.componentForClass(IntelligenceComponent.self) {
@@ -126,9 +127,22 @@ class LevelScene: SKScene {
         return follower
     }
 
-    func makeEnemy(position: vector_int2) -> Enemy {
+    func addEnemy(position: vector_int2) -> Enemy {
         let enemy = Enemy(field: field)
-        addChild(enemy.renderComponent.node, toWorldLayer: .Characters)
+
+        let renderNode = enemy.renderComponent.node
+        addChild(renderNode, toWorldLayer: .Characters)
+
+        let lifeGaugeNode = enemy.lifeComponent.lifeGaugeNode
+        addChild(lifeGaugeNode, toWorldLayer: .Info)
+
+        let xRange = SKRange(constantValue: GameConfiguration.Creature.Enemy.lifeGaugeOffset.x)
+        let yRange = SKRange(constantValue: GameConfiguration.Creature.Enemy.lifeGaugeOffset.y)
+
+        let constraint = SKConstraint.positionX(xRange, y: yRange)
+        constraint.referenceNode = renderNode
+
+        lifeGaugeNode.constraints = [constraint]
 
         enemy.onFieldComponent.warpTo(position)
 
@@ -179,7 +193,7 @@ extension LevelScene: SKPhysicsContactDelegate {
 
 extension LevelScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let follower = makeFollower(vector_int2(
+        let follower = addFollower(vector_int2(
             Int32(arc4random_uniform(UInt32(Field.Width))),
             Int32(arc4random_uniform(UInt32(Field.Height)))))
         follower.mandate = .Target(field.enemies.first!)

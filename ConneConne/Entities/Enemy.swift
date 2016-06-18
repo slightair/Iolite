@@ -18,6 +18,13 @@ class Enemy: GKEntity {
         return component
     }
 
+    var lifeComponent: LifeComponent {
+        guard let component = componentForClass(LifeComponent.self) else {
+            fatalError("Follower must have a LifeComponent")
+        }
+        return component
+    }
+
     required init(field: Field) {
         super.init()
 
@@ -25,8 +32,6 @@ class Enemy: GKEntity {
     }
 
     func setUpComponents(field: Field) {
-        let physicsBody = SKPhysicsBody(circleOfRadius: 24, center: CGPoint(x: 0, y: -24))
-
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody, colliderType: .Enemy)
         addComponent(physicsComponent)
 
@@ -52,23 +57,33 @@ class Enemy: GKEntity {
 }
 
 extension Enemy: CreatureConfiguration {
+    var physicsBody: SKPhysicsBody {
+        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Enemy.physicsBodyCircleOfRadius,
+                             center: GameConfiguration.Creature.Enemy.physicsBodyCenter)
+    }
+
     var textureSize: CGSize {
-        return CGSize(width: 96, height: 96)
+        return GameConfiguration.Creature.Enemy.textureSize
     }
 
     var textureName: String {
-        return "enemy"
+        return GameConfiguration.Creature.Enemy.textureName
     }
 
     var initialLife: Int {
-        return 100
+        return GameConfiguration.Creature.Enemy.initialLife
     }
 
     var maximumLife: Int {
-        return 100
+        return GameConfiguration.Creature.Enemy.maximumLife
     }
 
     func setUpAgent(agent: GKAgent2D) {
+        agent.mass = GameConfiguration.Creature.Enemy.agentMass
+        agent.radius = GameConfiguration.Creature.Enemy.agentRadius
+        agent.maxSpeed = GameConfiguration.Creature.Enemy.agentMaxSpeed
+        agent.maxAcceleration = GameConfiguration.Creature.Enemy.agentMaxAcceleration
+
         agent.delegate = self
     }
 }
