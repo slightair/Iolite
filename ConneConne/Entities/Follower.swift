@@ -75,10 +75,6 @@ class Follower: GKEntity {
 
         let node = renderComponent.node
         node.physicsBody = physicsComponent.physicsBody
-
-        let spriteNode = SKSpriteNode(imageNamed: textureName)
-        spriteNode.size = textureSize
-        node.addChild(spriteNode)
     }
 }
 
