@@ -74,6 +74,27 @@ class LevelScene: SKScene {
         }
     }
 
+    override func didFinishUpdate() {
+        var entities: [GKEntity] = []
+        entities.appendContentsOf(field.followers as [GKEntity])
+        entities.appendContentsOf(field.enemies as [GKEntity])
+
+        let ySortedEntities = entities.sort {
+            let nodeA = $0.0.componentForClass(RenderComponent.self)!.node
+            let nodeB = $0.1.componentForClass(RenderComponent.self)!.node
+
+            return nodeA.position.y > nodeB.position.y
+        }
+
+        var characterZPosition = WorldLayer.zSpacePerCharacter
+        for entity in ySortedEntities {
+            let node = entity.componentForClass(RenderComponent.self)!.node
+            node.zPosition = characterZPosition
+
+            characterZPosition += WorldLayer.zSpacePerCharacter
+        }
+    }
+
     func addChild(node: SKNode, toWorldLayer worldLayer: WorldLayer) {
         let worldLayerNode = worldLayerNodes[worldLayer]!
         worldLayerNode.addChild(node)

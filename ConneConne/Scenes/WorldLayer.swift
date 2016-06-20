@@ -1,11 +1,13 @@
 import SpriteKit
 
 enum WorldLayer: CGFloat {
-    case Board = -100
-    case Shadows = -50
+    static let zSpacePerCharacter: CGFloat = 10
+
+    case Board = -1000
+    case Shadows = -500
     case Obstacles = -25
     case Characters = 0
-    case Info = 1000
+    case Info = 8000
     case Debug = 10000
 
     var nodeName: String {
