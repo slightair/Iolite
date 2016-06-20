@@ -2,8 +2,8 @@ import SpriteKit
 
 class GaugeNode: SKSpriteNode {
     struct Configuration {
-        static let size = CGSize(width: 38.0, height: 6.0)
-        static let levelNodeSize = CGSize(width: 36.0, height: 4.0)
+        static let size = CGSize(width: 26.0, height: 4.0)
+        static let levelNodeSize = CGSize(width: 24.0, height: 2.0)
         static let levelUpdateDuration: NSTimeInterval = 0.1
         static let backgroundColor = SKColor.blackColor()
         static let levelColor = SKColor.greenColor()
