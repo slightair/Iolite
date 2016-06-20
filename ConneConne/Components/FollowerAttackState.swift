@@ -1,6 +1,6 @@
 import GameplayKit
 
-class FollowerMarchState: GKState {
+class FollowerAttackState: GKState {
     unowned let entity: Follower
 
     required init(entity: Follower) {

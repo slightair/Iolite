@@ -63,7 +63,10 @@ class Follower: GKEntity {
         addComponent(lifeComponent)
 
         let intelligenceComponent = IntelligenceComponent(states: [
-            FollowerMarchState(entity: self)
+            FollowerAgentControlledState(entity: self),
+            FollowerPreAttackState(entity: self),
+            FollowerAttackState(entity: self),
+            FollowerDamagedState(entity: self),
         ])
         addComponent(intelligenceComponent)
 

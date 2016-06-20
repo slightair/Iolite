@@ -1,0 +1,12 @@
+digraph G {
+  Attack;
+  AgentControlled;
+  Damaged;
+  PreAttack;
+  Attack -> AgentControlled;
+  Damaged -> AgentControlled;
+  AgentControlled -> PreAttack;
+  PreAttack -> Attack;
+  AgentControlled -> Damaged;
+  { rank=same; PreAttack; Attack; }
+}
