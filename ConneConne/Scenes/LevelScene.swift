@@ -10,20 +10,22 @@ class LevelScene: SKScene {
     var field = Field()
 
     lazy var componentSystems: [GKComponentSystem] = {
-        let agentComponentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
-        let physicsComponentSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
-        let renderComponentSystem = GKComponentSystem(componentClass: RenderComponent.self)
-        let onFieldComponentSystem = GKComponentSystem(componentClass: OnFieldComponent.self)
-        let lifeComponentSystem = GKComponentSystem(componentClass: LifeComponent.self)
+        let agentSystem = GKComponentSystem(componentClass: GKAgent2D.self)
+        let physicsSystem = GKComponentSystem(componentClass: PhysicsComponent.self)
+        let renderSystem = GKComponentSystem(componentClass: RenderComponent.self)
+        let onFieldSystem = GKComponentSystem(componentClass: OnFieldComponent.self)
+        let lifeSystem = GKComponentSystem(componentClass: LifeComponent.self)
         let intelligenceSystem = GKComponentSystem(componentClass: IntelligenceComponent.self)
+        let animationSystem = GKComponentSystem(componentClass: AnimationComponent.self)
 
         return [
-            agentComponentSystem,
-            physicsComponentSystem,
-            renderComponentSystem,
-            onFieldComponentSystem,
-            lifeComponentSystem,
+            agentSystem,
+            physicsSystem,
+            renderSystem,
+            onFieldSystem,
+            lifeSystem,
             intelligenceSystem,
+            animationSystem,
         ]
     }()
 
@@ -166,6 +168,9 @@ class LevelScene: SKScene {
         lifeGaugeNode.constraints = [constraint]
 
         enemy.onFieldComponent.warpTo(position)
+        if let intelligenceComponent = enemy.componentForClass(IntelligenceComponent.self) {
+            intelligenceComponent.enterInitialState()
+        }
 
         field.enemies.append(enemy)
 

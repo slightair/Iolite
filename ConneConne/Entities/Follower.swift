@@ -70,11 +70,15 @@ class Follower: GKEntity {
         ])
         addComponent(intelligenceComponent)
 
+        let animationComponent = AnimationComponent(textureSize: textureSize, animations: animations)
+        addComponent(animationComponent)
+
         setUpAgent(agent)
         addComponent(agent)
 
         let node = renderComponent.node
         node.physicsBody = physicsComponent.physicsBody
+        node.addChild(animationComponent.node)
     }
 }
 
@@ -90,6 +94,12 @@ extension Follower: CreatureConfiguration {
 
     var textureName: String {
         return GameConfiguration.Creature.Follower.textureName
+    }
+
+    var animations: [AnimationState: Animation] {
+        return [
+            .Walk: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Walk)
+        ]
     }
 
     var initialLife: Int {
@@ -119,6 +129,14 @@ extension Follower: GKAgentDelegate {
     }
 
     func agentDidUpdate(agent: GKAgent) {
+        guard let intelligenceComponent = componentForClass(IntelligenceComponent.self) else {
+            return
+        }
+
+        if intelligenceComponent.stateMachine.currentState is FollowerAgentControlledState {
+            componentForClass(AnimationComponent.self)?.requestedAnimationState = .Walk
+        }
+
         let node = renderComponent.node
         if let agent2D = agent as? GKAgent2D {
             node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))

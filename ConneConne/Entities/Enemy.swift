@@ -44,11 +44,20 @@ class Enemy: GKEntity {
         let lifeComponent = LifeComponent(life: initialLife, maximumLife: maximumLife)
         addComponent(lifeComponent)
 
+        let intelligenceComponent = IntelligenceComponent(states: [
+            EnemyWaitState(entity: self),
+        ])
+        addComponent(intelligenceComponent)
+
+        let animationComponent = AnimationComponent(textureSize: textureSize, animations: animations)
+        addComponent(animationComponent)
+
         setUpAgent(agent)
         addComponent(agent)
 
         let node = renderComponent.node
         node.physicsBody = physicsComponent.physicsBody
+        node.addChild(animationComponent.node)
     }
 }
 
@@ -64,6 +73,12 @@ extension Enemy: CreatureConfiguration {
 
     var textureName: String {
         return GameConfiguration.Creature.Enemy.textureName
+    }
+
+    var animations: [AnimationState: Animation] {
+        return [
+            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Wait)
+        ]
     }
 
     var initialLife: Int {
@@ -93,6 +108,14 @@ extension Enemy: GKAgentDelegate {
     }
 
     func agentDidUpdate(agent: GKAgent) {
+        guard let intelligenceComponent = componentForClass(IntelligenceComponent.self) else {
+            return
+        }
+
+        if intelligenceComponent.stateMachine.currentState is EnemyWaitState {
+            componentForClass(AnimationComponent.self)?.requestedAnimationState = .Wait
+        }
+
         let node = renderComponent.node
         if let agent2D = agent as? GKAgent2D {
             node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))

@@ -6,6 +6,7 @@ protocol CreatureConfiguration: class {
 
     var textureSize: CGSize { get }
     var textureName: String { get }
+    var animations: [AnimationState: Animation] { get }
 
     var initialLife: Int { get }
     var maximumLife: Int { get }

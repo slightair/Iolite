@@ -2,6 +2,7 @@ import SpriteKit
 import GameplayKit
 
 enum AnimationState: String {
+    case Wait
     case Walk
     case PreAttack
     case Attack
@@ -47,7 +48,10 @@ class AnimationComponent: GKComponent {
         if let animation = currentAnimation where animation.animationState == animationState {
             return
         }
-        let nextAnimation = currentAnimation!
+
+        guard let nextAnimation = animations[animationState] else {
+            return
+        }
 
         let action = SKAction.setTexture(SKTexture(imageNamed: nextAnimation.textureName))
         node.runAction(action, withKey: AnimationComponent.textureActionKey)
