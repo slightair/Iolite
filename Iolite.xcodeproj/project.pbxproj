@@ -23,6 +23,7 @@
 		57A94D781D0BA6A2007D2BC0 /* GaugeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */; };
 		57A94D7A1D0C399E007D2BC0 /* WorldLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A94D791D0C399E007D2BC0 /* WorldLayer.swift */; };
 		57A94D7E1D153A37007D2BC0 /* GameConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A94D7D1D153A37007D2BC0 /* GameConfiguration.swift */; };
+		57E6EA901D1B485E0089E77B /* IoliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6EA8F1D1B485E0089E77B /* IoliteTests.swift */; };
 		57ED7B051CDAFA30001E5A88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */; };
 		57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED7B0A1CDAFA30001E5A88 /* GameViewController.swift */; };
 		57ED7B0E1CDAFA30001E5A88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ED7B0C1CDAFA30001E5A88 /* Main.storyboard */; };
@@ -43,7 +44,7 @@
 			containerPortal = 57ED7AF91CDAFA30001E5A88 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 57ED7B001CDAFA30001E5A88;
-			remoteInfo = ConneConne;
+			remoteInfo = Iolite;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,14 +65,16 @@
 		57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeNode.swift; sourceTree = "<group>"; };
 		57A94D791D0C399E007D2BC0 /* WorldLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldLayer.swift; sourceTree = "<group>"; };
 		57A94D7D1D153A37007D2BC0 /* GameConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConfiguration.swift; sourceTree = "<group>"; };
-		57ED7B011CDAFA30001E5A88 /* ConneConne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConneConne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57E6EA8E1D1B485E0089E77B /* IoliteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IoliteTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		57E6EA8F1D1B485E0089E77B /* IoliteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IoliteTests.swift; sourceTree = "<group>"; };
+		57ED7B011CDAFA30001E5A88 /* Iolite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iolite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ED7B041CDAFA30001E5A88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57ED7B0A1CDAFA30001E5A88 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		57ED7B0D1CDAFA30001E5A88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57ED7B0F1CDAFA30001E5A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57ED7B121CDAFA30001E5A88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57ED7B141CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		57ED7B191CDAFA30001E5A88 /* ConneConneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConneConneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57ED7B191CDAFA30001E5A88 /* IoliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ED7B1F1CDAFA30001E5A88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57F36A8B1CE8359B00DB170B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		57F36A8D1CE83C5000DB170B /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
@@ -149,8 +152,8 @@
 		57ED7AF81CDAFA30001E5A88 = {
 			isa = PBXGroup;
 			children = (
-				57ED7B031CDAFA30001E5A88 /* ConneConne */,
-				57ED7B1C1CDAFA30001E5A88 /* ConneConneTests */,
+				57ED7B031CDAFA30001E5A88 /* Iolite */,
+				57ED7B1C1CDAFA30001E5A88 /* IoliteTests */,
 				57ED7B021CDAFA30001E5A88 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,13 +161,13 @@
 		57ED7B021CDAFA30001E5A88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57ED7B011CDAFA30001E5A88 /* ConneConne.app */,
-				57ED7B191CDAFA30001E5A88 /* ConneConneTests.xctest */,
+				57ED7B011CDAFA30001E5A88 /* Iolite.app */,
+				57ED7B191CDAFA30001E5A88 /* IoliteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57ED7B031CDAFA30001E5A88 /* ConneConne */ = {
+		57ED7B031CDAFA30001E5A88 /* Iolite */ = {
 			isa = PBXGroup;
 			children = (
 				571044E01CFBF44C007116D6 /* Scenes */,
@@ -180,15 +183,17 @@
 				57ED7B111CDAFA30001E5A88 /* LaunchScreen.storyboard */,
 				57ED7B141CDAFA30001E5A88 /* Info.plist */,
 			);
-			path = ConneConne;
+			path = Iolite;
 			sourceTree = "<group>";
 		};
-		57ED7B1C1CDAFA30001E5A88 /* ConneConneTests */ = {
+		57ED7B1C1CDAFA30001E5A88 /* IoliteTests */ = {
 			isa = PBXGroup;
 			children = (
 				57ED7B1F1CDAFA30001E5A88 /* Info.plist */,
+				57E6EA8F1D1B485E0089E77B /* IoliteTests.swift */,
+				57E6EA8E1D1B485E0089E77B /* IoliteTests-Bridging-Header.h */,
 			);
-			path = ConneConneTests;
+			path = IoliteTests;
 			sourceTree = "<group>";
 		};
 		57EF20921CE22689009A3EBD /* Entities */ = {
@@ -229,9 +234,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57ED7B001CDAFA30001E5A88 /* ConneConne */ = {
+		57ED7B001CDAFA30001E5A88 /* Iolite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57ED7B221CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "ConneConne" */;
+			buildConfigurationList = 57ED7B221CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "Iolite" */;
 			buildPhases = (
 				57ED7AFD1CDAFA30001E5A88 /* Sources */,
 				57ED7AFE1CDAFA30001E5A88 /* Frameworks */,
@@ -241,14 +246,14 @@
 			);
 			dependencies = (
 			);
-			name = ConneConne;
-			productName = ConneConne;
-			productReference = 57ED7B011CDAFA30001E5A88 /* ConneConne.app */;
+			name = Iolite;
+			productName = Iolite;
+			productReference = 57ED7B011CDAFA30001E5A88 /* Iolite.app */;
 			productType = "com.apple.product-type.application";
 		};
-		57ED7B181CDAFA30001E5A88 /* ConneConneTests */ = {
+		57ED7B181CDAFA30001E5A88 /* IoliteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57ED7B251CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "ConneConneTests" */;
+			buildConfigurationList = 57ED7B251CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "IoliteTests" */;
 			buildPhases = (
 				57ED7B151CDAFA30001E5A88 /* Sources */,
 				57ED7B161CDAFA30001E5A88 /* Frameworks */,
@@ -259,9 +264,9 @@
 			dependencies = (
 				57ED7B1B1CDAFA30001E5A88 /* PBXTargetDependency */,
 			);
-			name = ConneConneTests;
-			productName = ConneConneTests;
-			productReference = 57ED7B191CDAFA30001E5A88 /* ConneConneTests.xctest */;
+			name = IoliteTests;
+			productName = IoliteTests;
+			productReference = 57ED7B191CDAFA30001E5A88 /* IoliteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -283,7 +288,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57ED7AFC1CDAFA30001E5A88 /* Build configuration list for PBXProject "ConneConne" */;
+			buildConfigurationList = 57ED7AFC1CDAFA30001E5A88 /* Build configuration list for PBXProject "Iolite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -296,8 +301,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57ED7B001CDAFA30001E5A88 /* ConneConne */,
-				57ED7B181CDAFA30001E5A88 /* ConneConneTests */,
+				57ED7B001CDAFA30001E5A88 /* Iolite */,
+				57ED7B181CDAFA30001E5A88 /* IoliteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E6EA901D1B485E0089E77B /* IoliteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +373,7 @@
 /* Begin PBXTargetDependency section */
 		57ED7B1B1CDAFA30001E5A88 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 57ED7B001CDAFA30001E5A88 /* ConneConne */;
+			target = 57ED7B001CDAFA30001E5A88 /* Iolite */;
 			targetProxy = 57ED7B1A1CDAFA30001E5A88 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -481,10 +487,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ConneConne/Info.plist;
+				INFOPLIST_FILE = Iolite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.ConneConne;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.Iolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -493,10 +499,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ConneConne/Info.plist;
+				INFOPLIST_FILE = Iolite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.ConneConne;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.Iolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -505,12 +511,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = ConneConneTests/Info.plist;
+				INFOPLIST_FILE = IoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.ConneConneTests;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.IoliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConneConne.app/ConneConne";
+				SWIFT_OBJC_BRIDGING_HEADER = "IoliteTests/IoliteTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Iolite.app/Iolite";
 			};
 			name = Debug;
 		};
@@ -518,18 +527,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ConneConneTests/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = IoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.ConneConneTests;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.ios.IoliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ConneConne.app/ConneConne";
+				SWIFT_OBJC_BRIDGING_HEADER = "IoliteTests/IoliteTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Iolite.app/Iolite";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57ED7AFC1CDAFA30001E5A88 /* Build configuration list for PBXProject "ConneConne" */ = {
+		57ED7AFC1CDAFA30001E5A88 /* Build configuration list for PBXProject "Iolite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57ED7B201CDAFA30001E5A88 /* Debug */,
@@ -538,7 +549,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57ED7B221CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "ConneConne" */ = {
+		57ED7B221CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "Iolite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57ED7B231CDAFA30001E5A88 /* Debug */,
@@ -547,7 +558,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57ED7B251CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "ConneConneTests" */ = {
+		57ED7B251CDAFA30001E5A88 /* Build configuration list for PBXNativeTarget "IoliteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57ED7B261CDAFA30001E5A88 /* Debug */,
