@@ -118,14 +118,20 @@ extension Follower: CreatureConfiguration {
 
         agent.delegate = self
     }
+
+    func updateAgentPositionToMatchNodePosition() {
+        let node = renderComponent.node
+        agent.position = vector_float2(Float(node.position.x), Float(node.position.y))
+    }
+
+    func updateNodePositionToMatchAgentPosition() {
+        renderComponent.node.position = CGPoint(x: CGFloat(agent.position.x), y: CGFloat(agent.position.y))
+    }
 }
 
 extension Follower: GKAgentDelegate {
     func agentWillUpdate(agent: GKAgent) {
-        let node = renderComponent.node
-        if let agent2D = agent as? GKAgent2D {
-            agent2D.position = vector_float2(Float(node.position.x), Float(node.position.y))
-        }
+        updateAgentPositionToMatchNodePosition()
     }
 
     func agentDidUpdate(agent: GKAgent) {
@@ -135,11 +141,8 @@ extension Follower: GKAgentDelegate {
 
         if intelligenceComponent.stateMachine.currentState is FollowerAgentControlledState {
             componentForClass(AnimationComponent.self)?.requestedAnimationState = .Walk
-        }
 
-        let node = renderComponent.node
-        if let agent2D = agent as? GKAgent2D {
-            node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
+            updateNodePositionToMatchAgentPosition()
         }
     }
 }
@@ -150,6 +153,10 @@ extension Follower: ContactNotifiableType {
             return
         }
         print("contact \(enemy)")
+
+        if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
+            stateMachine.enterState(FollowerPreAttackState.self)
+        }
     }
 
     func contactWithEntityDidEnd(entity: GKEntity) {
