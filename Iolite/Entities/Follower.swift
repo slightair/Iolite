@@ -67,6 +67,7 @@ class Follower: GKEntity {
             FollowerPreAttackState(entity: self),
             FollowerAttackState(entity: self),
             FollowerDamagedState(entity: self),
+            FollowerWaitState(entity: self),
         ])
         addComponent(intelligenceComponent)
 
@@ -98,7 +99,11 @@ extension Follower: CreatureConfiguration {
 
     var animations: [AnimationState: Animation] {
         return [
-            .Walk: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Walk)
+            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.purpleColor(), animationState: .Wait),
+            .Walk: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.greenColor(), animationState: .Walk),
+            .PreAttack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.yellowColor(), animationState: .PreAttack),
+            .Attack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.orangeColor(), animationState: .Attack),
+            .Damaged: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Damaged),
         ]
     }
 
@@ -140,8 +145,6 @@ extension Follower: GKAgentDelegate {
         }
 
         if intelligenceComponent.stateMachine.currentState is FollowerAgentControlledState {
-            componentForClass(AnimationComponent.self)?.requestedAnimationState = .Walk
-
             updateNodePositionToMatchAgentPosition()
         }
     }

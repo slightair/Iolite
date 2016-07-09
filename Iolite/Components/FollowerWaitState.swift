@@ -1,6 +1,6 @@
 import GameplayKit
 
-class EnemyWaitState: EnemyBaseState {
+class FollowerWaitState: FollowerBaseState {
     override func didEnterWithPreviousState(previousState: GKState?) {
         super.didEnterWithPreviousState(previousState)
 

@@ -56,6 +56,9 @@ class AnimationComponent: GKComponent {
         let action = SKAction.setTexture(SKTexture(imageNamed: nextAnimation.textureName))
         node.runAction(action, withKey: AnimationComponent.textureActionKey)
 
+        node.colorBlendFactor = 0.5
+        node.color = nextAnimation.color
+
         currentAnimation = nextAnimation
         elapsedAnimationDuration = 0.0
     }

@@ -1,9 +1,9 @@
 import GameplayKit
 
-class FollowerAgentControlledState: GKState {
-    unowned let entity: Follower
+class FollowerAgentControlledState: FollowerBaseState {
+    override func didEnterWithPreviousState(previousState: GKState?) {
+        super.didEnterWithPreviousState(previousState)
 
-    required init(entity: Follower) {
-        self.entity = entity
+        animationComponent.requestedAnimationState = .Walk
     }
 }

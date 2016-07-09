@@ -77,7 +77,11 @@ extension Enemy: CreatureConfiguration {
 
     var animations: [AnimationState: Animation] {
         return [
-            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Wait)
+            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.purpleColor(), animationState: .Wait),
+            .Walk: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.greenColor(), animationState: .Walk),
+            .PreAttack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.yellowColor(), animationState: .PreAttack),
+            .Attack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.orangeColor(), animationState: .Attack),
+            .Damaged: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Damaged),
         ]
     }
 
@@ -113,7 +117,7 @@ extension Enemy: GKAgentDelegate {
         }
 
         if intelligenceComponent.stateMachine.currentState is EnemyWaitState {
-            componentForClass(AnimationComponent.self)?.requestedAnimationState = .Wait
+
         }
 
         let node = renderComponent.node

@@ -15,6 +15,9 @@
 		572BC0491D17BDBE000F059C /* FollowerAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BC0481D17BDBE000F059C /* FollowerAttackState.swift */; };
 		572BC04B1D17E30A000F059C /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BC04A1D17E30A000F059C /* AnimationComponent.swift */; };
 		572BC04E1D197AFA000F059C /* EnemyWaitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572BC04D1D197AFA000F059C /* EnemyWaitState.swift */; };
+		574B5C791D30FA0200451FD4 /* FollowerBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B5C781D30FA0200451FD4 /* FollowerBaseState.swift */; };
+		574B5C7B1D30FB3B00451FD4 /* EnemyBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B5C7A1D30FB3B00451FD4 /* EnemyBaseState.swift */; };
+		574B5C7D1D31217800451FD4 /* FollowerWaitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574B5C7C1D31217800451FD4 /* FollowerWaitState.swift */; };
 		57630E0D1D027F310003CA6D /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */; };
 		577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */; };
 		577083CF1CEF468E00FE8C92 /* FollowerAgentControlledState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */; };
@@ -57,6 +60,9 @@
 		572BC0481D17BDBE000F059C /* FollowerAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerAttackState.swift; sourceTree = "<group>"; };
 		572BC04A1D17E30A000F059C /* AnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		572BC04D1D197AFA000F059C /* EnemyWaitState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyWaitState.swift; sourceTree = "<group>"; };
+		574B5C781D30FA0200451FD4 /* FollowerBaseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerBaseState.swift; sourceTree = "<group>"; };
+		574B5C7A1D30FB3B00451FD4 /* EnemyBaseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyBaseState.swift; sourceTree = "<group>"; };
+		574B5C7C1D31217800451FD4 /* FollowerWaitState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerWaitState.swift; sourceTree = "<group>"; };
 		57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligenceComponent.swift; sourceTree = "<group>"; };
 		577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerAgentControlledState.swift; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 		572BC04C1D197AB6000F059C /* EnemyIntelligenceState */ = {
 			isa = PBXGroup;
 			children = (
+				574B5C7A1D30FB3B00451FD4 /* EnemyBaseState.swift */,
 				572BC04D1D197AFA000F059C /* EnemyWaitState.swift */,
 			);
 			name = EnemyIntelligenceState;
@@ -141,10 +148,12 @@
 		577083CD1CEF460600FE8C92 /* FollowerIntelligenceState */ = {
 			isa = PBXGroup;
 			children = (
+				574B5C781D30FA0200451FD4 /* FollowerBaseState.swift */,
 				577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */,
 				572BC0461D17BDB0000F059C /* FollowerPreAttackState.swift */,
 				572BC0481D17BDBE000F059C /* FollowerAttackState.swift */,
 				572BC0441D17BD9C000F059C /* FollowerDamagedState.swift */,
+				574B5C7C1D31217800451FD4 /* FollowerWaitState.swift */,
 			);
 			name = FollowerIntelligenceState;
 			sourceTree = "<group>";
@@ -346,10 +355,13 @@
 				57A94D7E1D153A37007D2BC0 /* GameConfiguration.swift in Sources */,
 				577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */,
 				572BC04E1D197AFA000F059C /* EnemyWaitState.swift in Sources */,
+				574B5C7D1D31217800451FD4 /* FollowerWaitState.swift in Sources */,
 				57A94D781D0BA6A2007D2BC0 /* GaugeNode.swift in Sources */,
 				57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */,
 				572BC0471D17BDB0000F059C /* FollowerPreAttackState.swift in Sources */,
+				574B5C7B1D30FB3B00451FD4 /* EnemyBaseState.swift in Sources */,
 				57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */,
+				574B5C791D30FA0200451FD4 /* FollowerBaseState.swift in Sources */,
 				577083CF1CEF468E00FE8C92 /* FollowerAgentControlledState.swift in Sources */,
 				57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */,
 				57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */,

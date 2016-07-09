@@ -1,9 +1,9 @@
 import GameplayKit
 
-class FollowerAttackState: GKState {
-    unowned let entity: Follower
+class FollowerAttackState: FollowerBaseState {
+    override func didEnterWithPreviousState(previousState: GKState?) {
+        super.didEnterWithPreviousState(previousState)
 
-    required init(entity: Follower) {
-        self.entity = entity
+        animationComponent.requestedAnimationState = .Attack
     }
 }
