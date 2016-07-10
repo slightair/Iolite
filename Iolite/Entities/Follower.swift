@@ -152,10 +152,9 @@ extension Follower: GKAgentDelegate {
 
 extension Follower: ContactNotifiableType {
     func contactWithEntityDidBegin(entity: GKEntity) {
-        guard let enemy = entity as? Enemy else {
+        guard let _ = entity as? Enemy else {
             return
         }
-        print("contact \(enemy)")
 
         if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
             stateMachine.enterState(FollowerPreAttackState.self)
@@ -163,9 +162,12 @@ extension Follower: ContactNotifiableType {
     }
 
     func contactWithEntityDidEnd(entity: GKEntity) {
-        guard let enemy = entity as? Enemy else {
+        guard let _ = entity as? Enemy else {
             return
         }
-        print("leave \(enemy)")
+
+        if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
+            stateMachine.enterState(FollowerAgentControlledState.self)
+        }
     }
 }

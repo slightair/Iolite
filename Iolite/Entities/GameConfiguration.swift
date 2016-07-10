@@ -26,6 +26,9 @@ struct GameConfiguration {
             static let agentMaxAcceleration: Float = 300.0
 
             static let lifeGaugeOffset = CGPoint(x: 0.0, y: -24.0)
+
+            static let preAttackStateDuration: NSTimeInterval = 0.8
+            static let attackStateDuration: NSTimeInterval = 1.0
         }
 
         struct Enemy {
@@ -44,6 +47,9 @@ struct GameConfiguration {
             static let agentMaxAcceleration: Float = 300.0
 
             static let lifeGaugeOffset = CGPoint(x: 0.0, y: -60.0)
+
+            static let preAttackStateDuration: NSTimeInterval = 0.8
+            static let attackStateDuration: NSTimeInterval = 1.0
         }
     }
 }
