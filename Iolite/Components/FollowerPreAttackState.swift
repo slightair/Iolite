@@ -19,4 +19,13 @@ class FollowerPreAttackState: FollowerBaseState {
             stateMachine?.enterState(FollowerAttackState.self)
         }
     }
+
+    override func isValidNextState(stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is FollowerAttackState.Type:
+            return true
+        default:
+            return false
+        }
+    }
 }

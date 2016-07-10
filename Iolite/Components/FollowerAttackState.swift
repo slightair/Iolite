@@ -33,7 +33,17 @@ class FollowerAttackState: FollowerBaseState {
         elapsedTime += seconds
 
         if elapsedTime >= GameConfiguration.Creature.Follower.attackStateDuration {
-            stateMachine?.enterState(FollowerPreAttackState.self)
+            let contactedBodies = physicsComponent.physicsBody.allContactedBodies()
+            for contactedBody in contactedBodies {
+                guard let entity = (contactedBody.node as? EntityNode)?.entity else {
+                    continue
+                }
+                if let _ = entity as? Enemy {
+                    stateMachine?.enterState(FollowerPreAttackState.self)
+                    return
+                }
+            }
+            stateMachine?.enterState(FollowerAgentControlledState.self)
         }
     }
 

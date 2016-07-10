@@ -33,8 +33,8 @@ struct GameConfiguration {
         }
 
         struct Enemy {
-            static let initialLife = 100
-            static let maximumLife = 100
+            static let initialLife = 1000
+            static let maximumLife = 1000
 
             static let textureName = "enemy"
             static let textureSize = CGSize(width: 96, height: 96)
