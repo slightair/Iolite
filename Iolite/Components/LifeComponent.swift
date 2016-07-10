@@ -1,6 +1,10 @@
 import SpriteKit
 import GameplayKit
 
+protocol LifeComponentDelegate: class {
+    func lifeComponentDidDamage(lifeComponent: LifeComponent)
+}
+
 class LifeComponent: GKComponent {
     var life: Int
     var maximumLife: Int
@@ -16,6 +20,8 @@ class LifeComponent: GKComponent {
         return life <= 0
     }
 
+    weak var delegate: LifeComponentDelegate?
+
     init(life: Int, maximumLife: Int) {
         self.maximumLife = maximumLife
         self.life = life
@@ -23,5 +29,16 @@ class LifeComponent: GKComponent {
         super.init()
 
         lifeGaugeNode.level = percentageLife
+    }
+
+    func damaged(damage: Int) {
+        var newLife = life - damage
+        newLife = min(max(newLife, 0), maximumLife)
+
+        if newLife < life {
+            life = newLife
+            lifeGaugeNode.level = percentageLife
+            delegate?.lifeComponentDidDamage(self)
+        }
     }
 }

@@ -99,7 +99,7 @@ extension Follower: CreatureConfiguration {
 
     var animations: [AnimationState: Animation] {
         return [
-            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.purpleColor(), animationState: .Wait),
+            .Wait: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.whiteColor(), animationState: .Wait),
             .Walk: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.greenColor(), animationState: .Walk),
             .PreAttack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.yellowColor(), animationState: .PreAttack),
             .Attack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.orangeColor(), animationState: .Attack),
