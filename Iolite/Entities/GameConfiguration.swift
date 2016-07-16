@@ -2,6 +2,13 @@ import SpriteKit
 import GameplayKit
 
 struct GameConfiguration {
+    struct UI {
+        static let defaultFont = "ArialRoundedMTBold"
+        static let damageFontSize: CGFloat = 9
+        static let damageAnimationDelta = CGVector(dx: 0, dy: 20)
+        static let damageAnimationDuration: NSTimeInterval = 1.0
+    }
+
     struct Field {
         static let offset = CGPoint(x: 0, y: 28)
         static let size = CGSize(width: 256, height: 400)

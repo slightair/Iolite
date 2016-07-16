@@ -103,6 +103,24 @@ class LevelScene: SKScene {
         worldLayerNode.addChild(node)
     }
 
+    func addDamageInfo(damage: Int, position: CGPoint) {
+        let damageLabel = SKLabelNode(text: "\(damage)")
+        damageLabel.fontSize = GameConfiguration.UI.damageFontSize
+        damageLabel.fontName = GameConfiguration.UI.defaultFont
+        damageLabel.verticalAlignmentMode = .Center
+        damageLabel.horizontalAlignmentMode = .Center
+        damageLabel.position = position
+        addChild(damageLabel, toWorldLayer: .Info)
+
+        let moveAction = SKAction.moveBy(GameConfiguration.UI.damageAnimationDelta, duration: GameConfiguration.UI.damageAnimationDuration)
+        let fadeOutAction = SKAction.fadeOutWithDuration(GameConfiguration.UI.damageAnimationDuration)
+        let action = SKAction.group([moveAction, fadeOutAction])
+
+        damageLabel.runAction(action) {
+            damageLabel.removeFromParent()
+        }
+    }
+
     func setUpPhysics() {
         physicsWorld.gravity = CGVector.zero
         physicsWorld.contactDelegate = self
@@ -186,7 +204,7 @@ class LevelScene: SKScene {
 extension LevelScene: SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         handleContact(contact) { (notifiableType: ContactNotifiableType, otherEntity: GKEntity) in
-            notifiableType.contactWithEntityDidBegin(otherEntity)
+            notifiableType.contactWithEntityDidBegin(otherEntity, point: contact.contactPoint)
         }
     }
 

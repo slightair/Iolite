@@ -48,6 +48,16 @@ class FollowerAttackState: FollowerBaseState {
     }
 
     func applyDamageToEnemy(enemy: Enemy) {
-        enemy.lifeComponent.damaged(1)
+        let damage = 1
+
+        enemy.lifeComponent.damaged(damage)
+
+        guard let damagePosition = entity.contactPoint else {
+            return
+        }
+
+        if let levelScene = animationComponent.node.scene as? LevelScene {
+            levelScene.addDamageInfo(damage, position: damagePosition)
+        }
     }
 }

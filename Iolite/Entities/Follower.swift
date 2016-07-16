@@ -3,6 +3,7 @@ import GameplayKit
 
 class Follower: GKEntity {
     let agent = GKAgent2D()
+    var contactPoint: CGPoint?
 
     var renderComponent: RenderComponent {
         guard let component = componentForClass(RenderComponent.self) else {
@@ -151,11 +152,12 @@ extension Follower: GKAgentDelegate {
 }
 
 extension Follower: ContactNotifiableType {
-    func contactWithEntityDidBegin(entity: GKEntity) {
+    func contactWithEntityDidBegin(entity: GKEntity, point: CGPoint) {
         guard let _ = entity as? Enemy else {
             return
         }
 
+        contactPoint = point
         if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
             stateMachine.enterState(FollowerPreAttackState.self)
         }
@@ -166,6 +168,7 @@ extension Follower: ContactNotifiableType {
             return
         }
 
+        contactPoint = nil
         if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
             stateMachine.enterState(FollowerAgentControlledState.self)
         }
