@@ -38,6 +38,7 @@ class LevelScene: SKScene {
         for layer in WorldLayer.allLayers {
             let layerNode = SKNode()
             layerNode.name = layer.nodeName
+            layerNode.zPosition = layer.rawValue
             worldLayerNodes[layer] = layerNode
             worldNode.addChild(layerNode)
         }
