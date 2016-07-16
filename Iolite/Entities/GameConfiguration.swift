@@ -5,6 +5,8 @@ struct GameConfiguration {
     struct UI {
         static let defaultFont = "ArialRoundedMTBold"
         static let damageFontSize: CGFloat = 9
+        static let damageEnemyFontColor = SKColor.whiteColor()
+        static let damageFollowerFontColor = SKColor.redColor()
         static let damageAnimationDelta = CGVector(dx: 0, dy: 20)
         static let damageAnimationDuration: NSTimeInterval = 1.0
     }
@@ -20,6 +22,8 @@ struct GameConfiguration {
         struct Follower {
             static let initialLife = 8
             static let maximumLife = 10
+
+            static let attack = 1
 
             static let textureName = "creature"
             static let textureSize = CGSize(width: 32, height: 32)
@@ -43,6 +47,8 @@ struct GameConfiguration {
             static let initialLife = 1000
             static let maximumLife = 1000
 
+            static let attack = 10
+
             static let textureName = "enemy"
             static let textureSize = CGSize(width: 96, height: 96)
 
@@ -56,7 +62,7 @@ struct GameConfiguration {
 
             static let lifeGaugeOffset = CGPoint(x: 0.0, y: -60.0)
 
-            static let preAttackStateDuration: NSTimeInterval = 0.8
+            static let preAttackStateDuration: NSTimeInterval = 3.0
             static let attackStateDuration: NSTimeInterval = 1.0
             static let damagedStateDuration: NSTimeInterval = 0.1
         }

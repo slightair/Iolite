@@ -22,6 +22,9 @@
 		57630E0D1D027F310003CA6D /* ContactNotifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */; };
 		577083CC1CEDFA0400FE8C92 /* IntelligenceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */; };
 		577083CF1CEF468E00FE8C92 /* FollowerAgentControlledState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */; };
+		5776486A1D3A2EDE00697EF6 /* EnemyPreAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */; };
+		5776486C1D3A2EEA00697EF6 /* EnemyAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */; };
+		5776486E1D3A360B00697EF6 /* CreatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776486D1D3A360B00697EF6 /* CreatureType.swift */; };
 		57A189DC1D04E47200349EE6 /* LifeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DB1D04E47200349EE6 /* LifeComponent.swift */; };
 		57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */; };
 		57A94D781D0BA6A2007D2BC0 /* GaugeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */; };
@@ -68,6 +71,9 @@
 		57630E0C1D027F310003CA6D /* ContactNotifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactNotifiableType.swift; sourceTree = "<group>"; };
 		577083CB1CEDFA0400FE8C92 /* IntelligenceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligenceComponent.swift; sourceTree = "<group>"; };
 		577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerAgentControlledState.swift; sourceTree = "<group>"; };
+		577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyPreAttackState.swift; sourceTree = "<group>"; };
+		5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyAttackState.swift; sourceTree = "<group>"; };
+		5776486D1D3A360B00697EF6 /* CreatureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureType.swift; sourceTree = "<group>"; };
 		57A189DB1D04E47200349EE6 /* LifeComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeComponent.swift; sourceTree = "<group>"; };
 		57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureConfiguration.swift; sourceTree = "<group>"; };
 		57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeNode.swift; sourceTree = "<group>"; };
@@ -142,8 +148,10 @@
 			isa = PBXGroup;
 			children = (
 				574B5C7A1D30FB3B00451FD4 /* EnemyBaseState.swift */,
-				572BC04D1D197AFA000F059C /* EnemyWaitState.swift */,
+				577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */,
+				5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */,
 				574B5C7E1D323DDB00451FD4 /* EnemyDamagedState.swift */,
+				572BC04D1D197AFA000F059C /* EnemyWaitState.swift */,
 			);
 			name = EnemyIntelligenceState;
 			sourceTree = "<group>";
@@ -215,6 +223,7 @@
 				57F36A8B1CE8359B00DB170B /* Enemy.swift */,
 				57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */,
 				57A94D7D1D153A37007D2BC0 /* GameConfiguration.swift */,
+				5776486D1D3A360B00697EF6 /* CreatureType.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -352,7 +361,10 @@
 				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,
 				572BC04B1D17E30A000F059C /* AnimationComponent.swift in Sources */,
 				57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */,
+				5776486A1D3A2EDE00697EF6 /* EnemyPreAttackState.swift in Sources */,
 				57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */,
+				5776486E1D3A360B00697EF6 /* CreatureType.swift in Sources */,
+				5776486C1D3A2EEA00697EF6 /* EnemyAttackState.swift in Sources */,
 				574B5C7F1D323DDB00451FD4 /* EnemyDamagedState.swift in Sources */,
 				571044E31CFBF4AC007116D6 /* Field.swift in Sources */,
 				572BC0451D17BD9C000F059C /* FollowerDamagedState.swift in Sources */,

@@ -47,6 +47,8 @@ class Enemy: GKEntity {
 
         let intelligenceComponent = IntelligenceComponent(states: [
             EnemyWaitState(entity: self),
+            EnemyPreAttackState(entity: self),
+            EnemyAttackState(entity: self),
             EnemyDamagedState(entity: self),
         ])
         addComponent(intelligenceComponent)
@@ -125,6 +127,28 @@ extension Enemy: GKAgentDelegate {
         let node = renderComponent.node
         if let agent2D = agent as? GKAgent2D {
             node.position = CGPoint(x: CGFloat(agent2D.position.x), y: CGFloat(agent2D.position.y))
+        }
+    }
+}
+
+extension Enemy: ContactNotifiableType {
+    func contactWithEntityDidBegin(entity: GKEntity, point: CGPoint) {
+        guard let _ = entity as? Follower else {
+            return
+        }
+
+        if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
+            stateMachine.enterState(EnemyPreAttackState.self)
+        }
+    }
+
+    func contactWithEntityDidEnd(entity: GKEntity) {
+        guard let _ = entity as? Enemy else {
+            return
+        }
+
+        if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
+            stateMachine.enterState(EnemyWaitState.self)
         }
     }
 }

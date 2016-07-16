@@ -1,6 +1,6 @@
 import GameplayKit
 
-class FollowerAttackState: FollowerBaseState {
+class EnemyAttackState: EnemyBaseState {
     var elapsedTime: NSTimeInterval = 0.0
 
     var physicsComponent: PhysicsComponent {
@@ -21,8 +21,8 @@ class FollowerAttackState: FollowerBaseState {
             guard let entity = (contactedBody.node as? EntityNode)?.entity else {
                 continue
             }
-            if let enemy = entity as? Enemy {
-                applyDamageToEnemy(enemy)
+            if let follower = entity as? Follower {
+                applyDamageToFollower(follower)
             }
         }
     }
@@ -32,32 +32,30 @@ class FollowerAttackState: FollowerBaseState {
 
         elapsedTime += seconds
 
-        if elapsedTime >= GameConfiguration.Creature.Follower.attackStateDuration {
+        if elapsedTime >= GameConfiguration.Creature.Enemy.attackStateDuration {
             let contactedBodies = physicsComponent.physicsBody.allContactedBodies()
             for contactedBody in contactedBodies {
                 guard let entity = (contactedBody.node as? EntityNode)?.entity else {
                     continue
                 }
-                if let _ = entity as? Enemy {
-                    stateMachine?.enterState(FollowerPreAttackState.self)
+                if let _ = entity as? Follower {
+                    stateMachine?.enterState(EnemyPreAttackState.self)
                     return
                 }
             }
-            stateMachine?.enterState(FollowerAgentControlledState.self)
+            stateMachine?.enterState(EnemyWaitState.self)
         }
     }
 
-    func applyDamageToEnemy(enemy: Enemy) {
-        let damage = GameConfiguration.Creature.Follower.attack
+    func applyDamageToFollower(follower: Follower) {
+        let damage = GameConfiguration.Creature.Enemy.attack
 
-        enemy.lifeComponent.damaged(damage)
+        follower.lifeComponent.damaged(damage)
 
-        guard let damagePosition = entity.contactPoint else {
-            return
-        }
+        let damagePosition = follower.renderComponent.node.position
 
         if let levelScene = animationComponent.node.scene as? LevelScene {
-            levelScene.addDamageInfo(damage, target: .Enemy, position: damagePosition)
+            levelScene.addDamageInfo(damage, target: .Follower, position: damagePosition)
         }
     }
 }

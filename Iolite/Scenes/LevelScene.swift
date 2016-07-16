@@ -103,7 +103,7 @@ class LevelScene: SKScene {
         worldLayerNode.addChild(node)
     }
 
-    func addDamageInfo(damage: Int, position: CGPoint) {
+    func addDamageInfo(damage: Int, target: CreatureType, position: CGPoint) {
         let damageLabel = SKLabelNode(text: "\(damage)")
         damageLabel.fontSize = GameConfiguration.UI.damageFontSize
         damageLabel.fontName = GameConfiguration.UI.defaultFont
@@ -111,6 +111,13 @@ class LevelScene: SKScene {
         damageLabel.horizontalAlignmentMode = .Center
         damageLabel.position = position
         addChild(damageLabel, toWorldLayer: .Info)
+
+        switch target {
+        case .Follower:
+            damageLabel.fontColor = GameConfiguration.UI.damageFollowerFontColor
+        case .Enemy:
+            damageLabel.fontColor = GameConfiguration.UI.damageEnemyFontColor
+        }
 
         let moveAction = SKAction.moveBy(GameConfiguration.UI.damageAnimationDelta, duration: GameConfiguration.UI.damageAnimationDuration)
         let fadeOutAction = SKAction.fadeOutWithDuration(GameConfiguration.UI.damageAnimationDuration)
@@ -132,6 +139,18 @@ class LevelScene: SKScene {
         ]
 
         ColliderType.requestedContactNotifications[.Follower] = [
+            .Obstacle,
+            .Follower,
+            .Enemy,
+        ]
+
+        ColliderType.definedCollisions[.Enemy] = [
+            .Obstacle,
+            .Follower,
+            .Enemy,
+        ]
+
+        ColliderType.requestedContactNotifications[.Enemy] = [
             .Obstacle,
             .Follower,
             .Enemy,

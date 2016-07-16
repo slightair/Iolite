@@ -61,6 +61,7 @@ class Follower: GKEntity {
         addComponent(onFieldComponent)
 
         let lifeComponent = LifeComponent(life: initialLife, maximumLife: maximumLife)
+        lifeComponent.delegate = self
         addComponent(lifeComponent)
 
         let intelligenceComponent = IntelligenceComponent(states: [
@@ -172,5 +173,14 @@ extension Follower: ContactNotifiableType {
         if let stateMachine = componentForClass(IntelligenceComponent.self)?.stateMachine {
             stateMachine.enterState(FollowerAgentControlledState.self)
         }
+    }
+}
+
+extension Follower: LifeComponentDelegate {
+    func lifeComponentDidDamage(lifeComponent: LifeComponent) {
+        guard let intelligenceComponent = componentForClass(IntelligenceComponent.self) else {
+            return
+        }
+        intelligenceComponent.stateMachine.enterState(FollowerDamagedState.self)
     }
 }
