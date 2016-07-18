@@ -21,7 +21,7 @@ class FollowerAttackState: FollowerBaseState {
             guard let entity = (contactedBody.node as? EntityNode)?.entity else {
                 continue
             }
-            if let enemy = entity as? Enemy {
+            if let enemy = entity as? Enemy where !enemy.lifeComponent.isDead {
                 applyDamageToEnemy(enemy)
             }
         }

@@ -14,6 +14,9 @@ class FollowerAgentControlledState: FollowerBaseState {
         case .Standby:
             stateMachine?.enterState(FollowerWaitState.self)
         default:
+            if entity.contactPoint != nil {
+                stateMachine?.enterState(FollowerPreAttackState.self)
+            }
             break
         }
     }
