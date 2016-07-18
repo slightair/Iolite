@@ -47,6 +47,15 @@ class EnemyAttackState: EnemyBaseState {
         }
     }
 
+    override func isValidNextState(stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is EnemyPreAttackState.Type, is EnemyWaitState.Type, is EnemyDamagedState.Type:
+            return true
+        default:
+            return false
+        }
+    }
+
     func applyDamageToFollower(follower: Follower) {
         let damage = GameConfiguration.Creature.Enemy.attack
 

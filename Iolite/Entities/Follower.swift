@@ -65,11 +65,13 @@ class Follower: GKEntity {
         addComponent(lifeComponent)
 
         let intelligenceComponent = IntelligenceComponent(states: [
+            FollowerWaitState(entity: self),
             FollowerAgentControlledState(entity: self),
             FollowerPreAttackState(entity: self),
             FollowerAttackState(entity: self),
             FollowerDamagedState(entity: self),
-            FollowerWaitState(entity: self),
+            FollowerDeathState(entity: self),
+            FollowerExitState(entity: self)
         ])
         addComponent(intelligenceComponent)
 
@@ -106,6 +108,7 @@ extension Follower: CreatureConfiguration {
             .PreAttack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.yellowColor(), animationState: .PreAttack),
             .Attack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.orangeColor(), animationState: .Attack),
             .Damaged: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Damaged),
+            .Death: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.blackColor(), animationState: .Death),
         ]
     }
 

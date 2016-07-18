@@ -43,7 +43,16 @@ class FollowerAttackState: FollowerBaseState {
                     return
                 }
             }
-            stateMachine?.enterState(FollowerAgentControlledState.self)
+            stateMachine?.enterState(FollowerWaitState.self)
+        }
+    }
+
+    override func isValidNextState(stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is FollowerPreAttackState.Type, is FollowerWaitState.Type, is FollowerDamagedState.Type:
+            return true
+        default:
+            return false
         }
     }
 

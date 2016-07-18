@@ -25,6 +25,10 @@
 		5776486A1D3A2EDE00697EF6 /* EnemyPreAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */; };
 		5776486C1D3A2EEA00697EF6 /* EnemyAttackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */; };
 		5776486E1D3A360B00697EF6 /* CreatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776486D1D3A360B00697EF6 /* CreatureType.swift */; };
+		5798A69B1D3CB9AD004740FF /* FollowerDeathState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798A69A1D3CB9AD004740FF /* FollowerDeathState.swift */; };
+		5798A69D1D3CB9C1004740FF /* EnemyDeathState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798A69C1D3CB9C1004740FF /* EnemyDeathState.swift */; };
+		5798A69F1D3CBB42004740FF /* FollowerExitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798A69E1D3CBB42004740FF /* FollowerExitState.swift */; };
+		5798A6A11D3CBBEF004740FF /* EnemyExitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5798A6A01D3CBBEF004740FF /* EnemyExitState.swift */; };
 		57A189DC1D04E47200349EE6 /* LifeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DB1D04E47200349EE6 /* LifeComponent.swift */; };
 		57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */; };
 		57A94D781D0BA6A2007D2BC0 /* GaugeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */; };
@@ -74,6 +78,10 @@
 		577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyPreAttackState.swift; sourceTree = "<group>"; };
 		5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyAttackState.swift; sourceTree = "<group>"; };
 		5776486D1D3A360B00697EF6 /* CreatureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureType.swift; sourceTree = "<group>"; };
+		5798A69A1D3CB9AD004740FF /* FollowerDeathState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerDeathState.swift; sourceTree = "<group>"; };
+		5798A69C1D3CB9C1004740FF /* EnemyDeathState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyDeathState.swift; sourceTree = "<group>"; };
+		5798A69E1D3CBB42004740FF /* FollowerExitState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerExitState.swift; sourceTree = "<group>"; };
+		5798A6A01D3CBBEF004740FF /* EnemyExitState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyExitState.swift; sourceTree = "<group>"; };
 		57A189DB1D04E47200349EE6 /* LifeComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeComponent.swift; sourceTree = "<group>"; };
 		57A189DD1D04E5CF00349EE6 /* CreatureConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureConfiguration.swift; sourceTree = "<group>"; };
 		57A94D771D0BA6A2007D2BC0 /* GaugeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeNode.swift; sourceTree = "<group>"; };
@@ -148,10 +156,12 @@
 			isa = PBXGroup;
 			children = (
 				574B5C7A1D30FB3B00451FD4 /* EnemyBaseState.swift */,
+				572BC04D1D197AFA000F059C /* EnemyWaitState.swift */,
 				577648691D3A2EDE00697EF6 /* EnemyPreAttackState.swift */,
 				5776486B1D3A2EEA00697EF6 /* EnemyAttackState.swift */,
 				574B5C7E1D323DDB00451FD4 /* EnemyDamagedState.swift */,
-				572BC04D1D197AFA000F059C /* EnemyWaitState.swift */,
+				5798A69C1D3CB9C1004740FF /* EnemyDeathState.swift */,
+				5798A6A01D3CBBEF004740FF /* EnemyExitState.swift */,
 			);
 			name = EnemyIntelligenceState;
 			sourceTree = "<group>";
@@ -160,11 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				574B5C781D30FA0200451FD4 /* FollowerBaseState.swift */,
+				574B5C7C1D31217800451FD4 /* FollowerWaitState.swift */,
 				577083CE1CEF468E00FE8C92 /* FollowerAgentControlledState.swift */,
 				572BC0461D17BDB0000F059C /* FollowerPreAttackState.swift */,
 				572BC0481D17BDBE000F059C /* FollowerAttackState.swift */,
 				572BC0441D17BD9C000F059C /* FollowerDamagedState.swift */,
-				574B5C7C1D31217800451FD4 /* FollowerWaitState.swift */,
+				5798A69A1D3CB9AD004740FF /* FollowerDeathState.swift */,
+				5798A69E1D3CBB42004740FF /* FollowerExitState.swift */,
 			);
 			name = FollowerIntelligenceState;
 			sourceTree = "<group>";
@@ -360,6 +372,7 @@
 				571044E41CFBF4AC007116D6 /* LevelScene.swift in Sources */,
 				57F36A931CE8400F00DB170B /* Follower.swift in Sources */,
 				572BC04B1D17E30A000F059C /* AnimationComponent.swift in Sources */,
+				5798A69F1D3CBB42004740FF /* FollowerExitState.swift in Sources */,
 				57F36A8E1CE83C5000DB170B /* RenderComponent.swift in Sources */,
 				5776486A1D3A2EDE00697EF6 /* EnemyPreAttackState.swift in Sources */,
 				57F36A911CE83CCB00DB170B /* EntityNode.swift in Sources */,
@@ -375,9 +388,12 @@
 				57A94D781D0BA6A2007D2BC0 /* GaugeNode.swift in Sources */,
 				57A189DE1D04E5CF00349EE6 /* CreatureConfiguration.swift in Sources */,
 				572BC0471D17BDB0000F059C /* FollowerPreAttackState.swift in Sources */,
+				5798A69D1D3CB9C1004740FF /* EnemyDeathState.swift in Sources */,
+				5798A6A11D3CBBEF004740FF /* EnemyExitState.swift in Sources */,
 				574B5C7B1D30FB3B00451FD4 /* EnemyBaseState.swift in Sources */,
 				57ED7B0B1CDAFA30001E5A88 /* GameViewController.swift in Sources */,
 				574B5C791D30FA0200451FD4 /* FollowerBaseState.swift in Sources */,
+				5798A69B1D3CB9AD004740FF /* FollowerDeathState.swift in Sources */,
 				577083CF1CEF468E00FE8C92 /* FollowerAgentControlledState.swift in Sources */,
 				57F36A8C1CE8359B00DB170B /* Enemy.swift in Sources */,
 				57F36A951CE8478200DB170B /* OnFieldComponent.swift in Sources */,

@@ -7,6 +7,7 @@ enum AnimationState: String {
     case PreAttack
     case Attack
     case Damaged
+    case Death
 }
 
 struct Animation {

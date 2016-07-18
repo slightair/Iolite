@@ -41,6 +41,7 @@ struct GameConfiguration {
             static let preAttackStateDuration: NSTimeInterval = 0.8
             static let attackStateDuration: NSTimeInterval = 1.0
             static let damagedStateDuration: NSTimeInterval = 0.1
+            static let deathStateDuration: NSTimeInterval = 1.0
         }
 
         struct Enemy {
@@ -65,6 +66,7 @@ struct GameConfiguration {
             static let preAttackStateDuration: NSTimeInterval = 3.0
             static let attackStateDuration: NSTimeInterval = 1.0
             static let damagedStateDuration: NSTimeInterval = 0.1
+            static let deathStateDuration: NSTimeInterval = 1.0
         }
     }
 }

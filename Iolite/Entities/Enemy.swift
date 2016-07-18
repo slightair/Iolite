@@ -50,6 +50,8 @@ class Enemy: GKEntity {
             EnemyPreAttackState(entity: self),
             EnemyAttackState(entity: self),
             EnemyDamagedState(entity: self),
+            EnemyDeathState(entity: self),
+            EnemyExitState(entity: self),
         ])
         addComponent(intelligenceComponent)
 
@@ -86,6 +88,7 @@ extension Enemy: CreatureConfiguration {
             .PreAttack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.yellowColor(), animationState: .PreAttack),
             .Attack: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.orangeColor(), animationState: .Attack),
             .Damaged: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.redColor(), animationState: .Damaged),
+            .Death: AnimationComponent.animation(fromTextureName: textureName, color: SKColor.blackColor(), animationState: .Death),
         ]
     }
 

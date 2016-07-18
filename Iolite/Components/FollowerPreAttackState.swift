@@ -22,7 +22,7 @@ class FollowerPreAttackState: FollowerBaseState {
 
     override func isValidNextState(stateClass: AnyClass) -> Bool {
         switch stateClass {
-        case is FollowerAttackState.Type:
+        case is FollowerAttackState.Type, is FollowerDamagedState.Type:
             return true
         default:
             return false

@@ -6,4 +6,13 @@ class FollowerDamagedState: FollowerBaseState {
 
         animationComponent.requestedAnimationState = .Damaged
     }
+
+    override func isValidNextState(stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is FollowerPreAttackState.Type, is FollowerWaitState.Type, is FollowerDeathState.Type:
+            return true
+        default:
+            return false
+        }
+    }
 }

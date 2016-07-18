@@ -19,4 +19,13 @@ class EnemyDamagedState: EnemyBaseState {
             stateMachine?.enterState(EnemyWaitState.self)
         }
     }
+
+    override func isValidNextState(stateClass: AnyClass) -> Bool {
+        switch stateClass {
+        case is EnemyPreAttackState.Type, is EnemyWaitState.Type, is EnemyDeathState.Type:
+            return true
+        default:
+            return false
+        }
+    }
 }
