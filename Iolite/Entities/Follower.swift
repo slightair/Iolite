@@ -85,14 +85,14 @@ class Follower: GKEntity {
         node.physicsBody = physicsComponent.physicsBody
         node.addChild(animationComponent.node)
     }
+
+    lazy var physicsBody = {
+        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Follower.physicsBodyCircleOfRadius,
+                             center: GameConfiguration.Creature.Follower.physicsBodyCenter)
+    }()
 }
 
 extension Follower: CreatureConfiguration {
-    var physicsBody: SKPhysicsBody {
-        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Follower.physicsBodyCircleOfRadius,
-                             center: GameConfiguration.Creature.Follower.physicsBodyCenter)
-    }
-
     var textureSize: CGSize {
         return GameConfiguration.Creature.Follower.textureSize
     }

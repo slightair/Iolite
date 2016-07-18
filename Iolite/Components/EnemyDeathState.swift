@@ -15,7 +15,7 @@ class EnemyDeathState: EnemyBaseState {
 
         elapsedTime += seconds
 
-        if elapsedTime >= GameConfiguration.Creature.Enemy.preAttackStateDuration {
+        if elapsedTime >= GameConfiguration.Creature.Enemy.deathStateDuration {
             stateMachine?.enterState(EnemyExitState.self)
         }
     }

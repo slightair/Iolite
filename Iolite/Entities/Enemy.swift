@@ -32,6 +32,7 @@ class Enemy: GKEntity {
     }
 
     func setUpComponents(field: Field) {
+        physicsBody.dynamic = false
         let physicsComponent = PhysicsComponent(physicsBody: physicsBody, colliderType: .Enemy)
         addComponent(physicsComponent)
 
@@ -65,14 +66,14 @@ class Enemy: GKEntity {
         node.physicsBody = physicsComponent.physicsBody
         node.addChild(animationComponent.node)
     }
+
+    lazy var physicsBody = {
+        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Enemy.physicsBodyCircleOfRadius,
+                             center: GameConfiguration.Creature.Enemy.physicsBodyCenter)
+    }()
 }
 
 extension Enemy: CreatureConfiguration {
-    var physicsBody: SKPhysicsBody {
-        return SKPhysicsBody(circleOfRadius: GameConfiguration.Creature.Enemy.physicsBodyCircleOfRadius,
-                             center: GameConfiguration.Creature.Enemy.physicsBodyCenter)
-    }
-
     var textureSize: CGSize {
         return GameConfiguration.Creature.Enemy.textureSize
     }
